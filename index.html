@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>龍門戰記 · Longmen Tactics</title>
+<meta name="description" content="原創武俠戰棋 RPG：龍門雙奕與八派戰旗。高低差地形、出手順序、蓄氣內功、背後出手、偷竊與收服、隱藏迷宮。An original wuxia tactics RPG with the Longmen cast.">
+<meta name="theme-color" content="#14110e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="龍門戰記">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Noto+Serif+TC:wght@900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="style-wuxia.css?v=1">
+</head>
+<body>
+<div id="game"><canvas id="view"></canvas><div id="ui"></div></div>
+<script type="importmap">{ "imports": {
+  "./js/art.js": "./js/art.js?v=1",
+  "./js/audio.js": "./js/audio.js?v=1",
+  "./js/core/battle.js": "./js/core/battle.js?v=1",
+  "./js/core/build.js": "./js/core/build.js?v=1",
+  "./js/core/mapgen.js": "./js/core/mapgen.js?v=1",
+  "./js/core/unit.js": "./js/core/unit.js?v=1",
+  "./js/data/core.js": "./js/data/core.js?v=1",
+  "./js/data/items.js": "./js/data/items.js?v=1",
+  "./js/data/jobdefs.js": "./js/data/jobdefs.js?v=1",
+  "./js/data/jobs.js": "./js/data/jobs.js?v=1",
+  "./js/data/jobs1.js": "./js/data/jobs1.js?v=1",
+  "./js/data/jobs2.js": "./js/data/jobs2.js?v=1",
+  "./js/data/journal.js": "./js/data/journal.js?v=1",
+  "./js/data/monsters.js": "./js/data/monsters.js?v=1",
+  "./js/data/names.js": "./js/data/names.js?v=1",
+  "./js/data/story.js": "./js/data/story.js?v=1",
+  "./js/data/story1.js": "./js/data/story1.js?v=1",
+  "./js/data/story2.js": "./js/data/story2.js?v=1",
+  "./js/data/story3.js": "./js/data/story3.js?v=1",
+  "./js/data/world.js": "./js/data/world.js?v=1",
+  "./js/i18n.js": "./js/i18n.js?v=1",
+  "./js/state.js": "./js/state.js?v=1",
+  "./js/ui/battleui.js": "./js/ui/battleui.js?v=1",
+  "./js/ui/deco.js": "./js/ui/deco.js?v=1",
+  "./js/ui/dom.js": "./js/ui/dom.js?v=1",
+  "./js/ui/iso.js": "./js/ui/iso.js?v=1",
+  "./js/ui/journal.js": "./js/ui/journal.js?v=1",
+  "./js/ui/party.js": "./js/ui/party.js?v=1",
+  "./js/ui/scene.js": "./js/ui/scene.js?v=1",
+  "./js/ui/sprites.js": "./js/ui/sprites.js?v=1",
+  "./js/util.js": "./js/util.js?v=1"
+} }</script>
+<script type="module" src="js/game.js?v=1"></script>
+<script src="/hub.js" data-pos="top-left" defer></script>
+</body>
+</html>

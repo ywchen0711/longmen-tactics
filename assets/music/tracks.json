@@ -1,0 +1,80 @@
+{
+ "title": {
+  "zh": "龍門戰旗",
+  "en": "The Banners of Longmen",
+  "loop": true,
+  "dur": 73.846
+ },
+ "world": {
+  "zh": "江湖行",
+  "en": "Walking the Jianghu",
+  "loop": true,
+  "dur": 66.207
+ },
+ "town": {
+  "zh": "茶館閒話",
+  "en": "Gossip over Tea",
+  "loop": true,
+  "dur": 76.8
+ },
+ "calm": {
+  "zh": "說書人",
+  "en": "The Storyteller",
+  "loop": true,
+  "dur": 43.636
+ },
+ "tense": {
+  "zh": "黑旗",
+  "en": "The Black Banner",
+  "loop": true,
+  "dur": 41.739
+ },
+ "sad": {
+  "zh": "寒江雪",
+  "en": "Snow on the Cold River",
+  "loop": true,
+  "dur": 53.333
+ },
+ "battle": {
+  "zh": "八方風雨",
+  "en": "Storm from Eight Directions",
+  "loop": true,
+  "dur": 45.714
+ },
+ "battle2": {
+  "zh": "刀光劍影",
+  "en": "Flashing Blades",
+  "loop": true,
+  "dur": 43.636
+ },
+ "battle3": {
+  "zh": "過關斬將",
+  "en": "Through the Passes",
+  "loop": true,
+  "dur": 48.0
+ },
+ "boss": {
+  "zh": "幽冥殿",
+  "en": "The Netherworld Hall",
+  "loop": true,
+  "dur": 51.2
+ },
+ "victory": {
+  "zh": "旗開得勝",
+  "en": "Victory at the First Banner",
+  "loop": false,
+  "dur": 4.8
+ },
+ "defeat": {
+  "zh": "壯志未酬",
+  "en": "Ambition Unfulfilled",
+  "loop": false,
+  "dur": 8.457
+ },
+ "ending": {
+  "zh": "八旗同風",
+  "en": "Eight Banners in One Wind",
+  "loop": false,
+  "dur": 153.15
+ }
+}

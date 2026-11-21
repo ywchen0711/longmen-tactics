@@ -1,0 +1,2154 @@
+{
+ "note": "Samples used by tools/orch.py. They are not stored in the repo: download them into <samples_dir>/<folder>/ (VSCO files keep their names, freesound files are saved as <id>.mp3 from the page's HQ preview), then run  python -P tools/orch.py prep <samples_dir> <cache_dir>.",
+ "vsco2": {
+  "name": "VS Chamber Orchestra: Community Edition (VSCO-2 CE)",
+  "by": "Versilian Studios (Sam Gossner, Simon Dalzell; sample cutting Elan Hickler/Soundemote)",
+  "license": "CC0 1.0",
+  "url": "https://github.com/sgossner/VSCO-2-CE",
+  "raw": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/master/",
+  "files": [
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_A#1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_A#1_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_A#1_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_A0_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_A2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_A2_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_A2_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_C1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_C1_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_C1_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_C3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_C3_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_C3_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_C3_v4_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_D#1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_D#1_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_D#1_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_D2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_D2_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_D2_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_D2_v4_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_D4_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_F2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_F2_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_F2_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_F4_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_G1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_G1_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/hn",
+    "path": "Brass/F Horn/sus/MOHorn_sus_G1_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_A#0_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_A#0_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_A#1_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_C#1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_C#1_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_C#3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_C#3_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_C#3_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_C3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_C3_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_C3_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_D#1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_D#1_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_D#1_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_D#3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_D#3_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_D#3_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_D2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_D2_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_D2_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_F1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_F1_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_F1_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_F2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_F2_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_F2_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_F3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_F3_v2_1.wav"
+   },
+   {
+    "folder": "vsco2/tbn",
+    "path": "Brass/Tenor Trombone/sus/tenortbn_sus_F3_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "Miscellania Raw/Misc 1/cymb_gong.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "Miscellania Raw/Misc 1/cymb_gong2.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "Miscellania Raw/Misc 2/NepaleseBells/fx1_short_r01_main.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "Miscellania Raw/Misc 2/NepaleseBells/fx1_short_r02_main.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "Miscellania Raw/Misc 2/NepaleseBells/fx1_short_r03_main.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "Miscellania Raw/Misc 2/NepaleseBells/fx1_short_r04_main.wav"
+   },
+   {
+    "folder": "vsco2/glock",
+    "path": "Percussion/Glock/glock_medium_C5.wav"
+   },
+   {
+    "folder": "vsco2/glock",
+    "path": "Percussion/Glock/glock_medium_C6.wav"
+   },
+   {
+    "folder": "vsco2/glock",
+    "path": "Percussion/Glock/glock_medium_C7.wav"
+   },
+   {
+    "folder": "vsco2/glock",
+    "path": "Percussion/Glock/glock_medium_G4.wav"
+   },
+   {
+    "folder": "vsco2/glock",
+    "path": "Percussion/Glock/glock_medium_G5.wav"
+   },
+   {
+    "folder": "vsco2/glock",
+    "path": "Percussion/Glock/glock_medium_G6.wav"
+   },
+   {
+    "folder": "vsco2/timp",
+    "path": "Percussion/Timpani/Timpani1_Hit_v3_rr1_Sum.wav"
+   },
+   {
+    "folder": "vsco2/timp",
+    "path": "Percussion/Timpani/Timpani2_Hit_v3_rr1_Sum.wav"
+   },
+   {
+    "folder": "vsco2/timp",
+    "path": "Percussion/Timpani/Timpani2_Hit_v4_rr1_Sum.wav"
+   },
+   {
+    "folder": "vsco2/timp",
+    "path": "Percussion/Timpani/Timpani3_Hit_v3_rr1_Sum.wav"
+   },
+   {
+    "folder": "vsco2/timp",
+    "path": "Percussion/Timpani/Timpani3_Hit_v4_rr1_Sum.wav"
+   },
+   {
+    "folder": "vsco2/timp",
+    "path": "Percussion/Timpani/Timpani4_Hit_v3_rr1_Sum.wav"
+   },
+   {
+    "folder": "vsco2/timp",
+    "path": "Percussion/Timpani/Timpani4_Hit_v4_rr1_Sum.wav"
+   },
+   {
+    "folder": "vsco2/timp",
+    "path": "Percussion/Timpani/Timpani5_Hit_v3_rr1_Sum.wav"
+   },
+   {
+    "folder": "vsco2/timp",
+    "path": "Percussion/Timpani/Timpani5_Hit_v4_rr1_Sum.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_A2_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_B1_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_B3_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_C1_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_C3_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_D2_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_D4_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_E1_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_E3_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_F2_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_F4_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_G1_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcpz",
+    "path": "Strings/Cello Section/pizzT/pizzT_G3_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_A2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_A2_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_B1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_B1_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_B3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_B3_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_C1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_C1_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_C3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_C3_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_D2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_D2_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_D4_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_D4_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_E1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_E1_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_E3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_E3_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_F2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_F2_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_F4_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_F4_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_G1_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_G1_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_G3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vc",
+    "path": "Strings/Cello Section/susvib/susvib_G3_v3_1.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_A2_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_A4_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_A6_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_B1_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_B3_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_B5_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_B6_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_C3_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_C5_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_D2_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_D4_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_D6_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_D7_f.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_E1_f.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_E3_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_E5_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_F2_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_F4_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_F6_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_F7_f.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_G1_mp.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_G3_mf.wav"
+   },
+   {
+    "folder": "vsco2/harp",
+    "path": "Strings/Harp/KSHarp_G5_mf.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_A#0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_A#0_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_A1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_B2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_C#2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_C1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_C1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_D1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_E0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_E0_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_E1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_E1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_E2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_F#0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_F#0_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_F#1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_G#1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_G#2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_G0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbpz",
+    "path": "Strings/Solo Contrabass/Pizz/BKCtbss_Pizz_G0_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_A#0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_A#0_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_A1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_A1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_B2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_B2_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_C#2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_C#2_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_C1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_C1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_D1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_D1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_E1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_E1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_E2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_E2_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_F#0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_F#0_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_F#1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_F#1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_G#1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_G#1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_G#2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_G#2_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_G0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cb",
+    "path": "Strings/Solo Contrabass/SusVib/BKCtbss_SusVib_G0_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_A3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_B2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_B4_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_C2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_C4_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_D2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_D3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_D5_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_E2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_E4_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_F3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_G2_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vla",
+    "path": "Strings/Viola Section/susvib/ViolaEns_susvib_G4_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/vlnpz",
+    "path": "Strings/Violin Section/Pizz/VlnEns_Pizz_A2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnpz",
+    "path": "Strings/Violin Section/Pizz/VlnEns_Pizz_A3_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnpz",
+    "path": "Strings/Violin Section/Pizz/VlnEns_Pizz_B2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnpz",
+    "path": "Strings/Violin Section/Pizz/VlnEns_Pizz_B4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnpz",
+    "path": "Strings/Violin Section/Pizz/VlnEns_Pizz_C4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnpz",
+    "path": "Strings/Violin Section/Pizz/VlnEns_Pizz_D3_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnpz",
+    "path": "Strings/Violin Section/Pizz/VlnEns_Pizz_D5_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnpz",
+    "path": "Strings/Violin Section/Pizz/VlnEns_Pizz_E4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnpz",
+    "path": "Strings/Violin Section/Pizz/VlnEns_Pizz_F#3_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnpz",
+    "path": "Strings/Violin Section/Pizz/VlnEns_Pizz_G2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnpz",
+    "path": "Strings/Violin Section/Pizz/VlnEns_Pizz_G4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_A2_v1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_A2_v2.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_A3_v1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_A3_v2.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_B2_v1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_B2_v2.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_B4_v1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_B4_v2.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_C4_v1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_C4_v2.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_D3_v1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_D3_v2.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_D5_v1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_D5_v2.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_E4_v1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_E4_v2.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_F#3_v1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_G2_v1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_G2_v2.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_G4_v1.wav"
+   },
+   {
+    "folder": "vsco2/vlntr",
+    "path": "Strings/Violin Section/Trem/VlnEns_Trem_G4_v2.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_A2_v1.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_A2_v2.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_A3_v1.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_A3_v2.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_B2_v1.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_B2_v2.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_B4_v1.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_B4_v2.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_C4_v1.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_C4_v2.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_D3_v1.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_D3_v2.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_D5_v1.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_D5_v2.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_E4_v1.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_E4_v2.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_F#3_v1.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_F#3_v2.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_G2_v1.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_G2_v2.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_G4_v1.wav"
+   },
+   {
+    "folder": "vsco2/vln",
+    "path": "Strings/Violin Section/susVib/VlnEns_susVib_G4_v2.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/bass/bdrum_f_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/bass/bdrum_ff_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/bass/bdrum_fff_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/bass/bdrum_mp_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/bass/bdrum_p_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/bass/bdrum_roll_short_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/EthnicLargeStick_rimshot_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/EthnicLargeStick_rimshot_2.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/hand/EthnicLargeHand_hit_f_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/hand/EthnicLargeHand_hit_ff_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/hand/EthnicLargeHand_hit_mp_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/hand/EthnicLargeHand_hit_p_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/mallet/EthnicLargeMallet_hit_f_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/mallet/EthnicLargeMallet_hit_ff_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/mallet/EthnicLargeMallet_hit_mf_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_f_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_fff_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_mf_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/other/ethnic/giant/sticks/EthnicLargeSticks_hit_p_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/snare/drum1/snare1_f_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/snare/drum1/snare1_ff_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/snare/drum1/snare1_mp_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/snare/drum1/snare1_nosnare_f_2.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/snare/drum1/snare1_nosnare_mf_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/snare/drum1/snare1_p_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/snare/drum1/snare1_pp_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/snare/drum1/snare1_rimshot_f.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/snare/drum1/snare1_rimshot_mf.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/snare/drum2/snare2_nosnare_roll_ff_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/tenor/tenor_higher/tenorH_f_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/tenor/tenor_higher/tenorH_ff_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/tenor/tenor_higher/tenorH_mf_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/tenor/tenor_lower/tenor_f_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/tenor/tenor_lower/tenor_ff_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/drums/tenor/tenor_lower/tenor_mf_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Cymbals/clash/crash_hit_ff_loose.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Cymbals/clash/crash_hit_ff_tight.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Cymbals/clash/crash_hit_fff_loose.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Cymbals/clash/crash_hit_mp_loose.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Cymbals/susp/susp_hit_metal_2_mf.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Cymbals/susp/susp_hit_softmall_mp.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Cymbals/susp/susp_hit_softmall_p.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Cymbals/susp/susp_hit_softmall_roll2_cresc.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Gong/gong_hit_ff.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Gong/gong_hit_mf_2.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Gong/gong_hit_mf_3.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/Gong/gong_hit_mp.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/various/Fing_Cymb.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/various/sleighbell1_hit_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/various/windchimes_desc1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varMetal/various/windchimes_slowAsc1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varWood/claves_mf.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varWood/log_drum/slitdrum1_ff_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varWood/log_drum/slitdrum1_mp_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varWood/log_drum/slitdrum3_ff_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varWood/log_drum/slitdrum3_mp_1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varWood/tambourine_down_2.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varWood/tambourine_up.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_A#0_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_A#0_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_A1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_A1_v1_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_A1_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_A1_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_A2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_A2_v1_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_A2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_A2_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C2_v1_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C2_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C3_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C3_v1_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C3_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C3_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C4_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C4_v1_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_C4_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_D#2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_D#2_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_D1_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_D1_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_E2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_E2_v1_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_E2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_E2_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_E3_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_E3_v1_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_E3_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_E3_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_F1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_F1_v1_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_F1_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_F1_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_G2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_G2_v1_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_G2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_G2_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_G3_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_G3_v1_rr2.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_G3_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/bsn",
+    "path": "Woodwinds/Bassoon/stac/PSBassoon_G3_v2_rr2.wav"
+   },
+   {
+    "folder": "vsco2/flst",
+    "path": "Woodwinds/Flute/stac/LDFlute_stac_A3_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/flst",
+    "path": "Woodwinds/Flute/stac/LDFlute_stac_A4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/flst",
+    "path": "Woodwinds/Flute/stac/LDFlute_stac_A5_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/flst",
+    "path": "Woodwinds/Flute/stac/LDFlute_stac_C4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/flst",
+    "path": "Woodwinds/Flute/stac/LDFlute_stac_C5_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/flst",
+    "path": "Woodwinds/Flute/stac/LDFlute_stac_C6_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/flst",
+    "path": "Woodwinds/Flute/stac/LDFlute_stac_E4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/flst",
+    "path": "Woodwinds/Flute/stac/LDFlute_stac_E5_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/fl",
+    "path": "Woodwinds/Flute/susvib/LDFlute_susvib_A3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/fl",
+    "path": "Woodwinds/Flute/susvib/LDFlute_susvib_A4_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/fl",
+    "path": "Woodwinds/Flute/susvib/LDFlute_susvib_A5_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/fl",
+    "path": "Woodwinds/Flute/susvib/LDFlute_susvib_C3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/fl",
+    "path": "Woodwinds/Flute/susvib/LDFlute_susvib_C4_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/fl",
+    "path": "Woodwinds/Flute/susvib/LDFlute_susvib_C5_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/fl",
+    "path": "Woodwinds/Flute/susvib/LDFlute_susvib_C6_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/fl",
+    "path": "Woodwinds/Flute/susvib/LDFlute_susvib_E3_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/fl",
+    "path": "Woodwinds/Flute/susvib/LDFlute_susvib_E4_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/fl",
+    "path": "Woodwinds/Flute/susvib/LDFlute_susvib_E5_v1_1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_A#1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_A#1_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_A#1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_A0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_A2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_A2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_A2_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_C1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_C1_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_C3_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_C3_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_C3_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_D#1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_D#1_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_D2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_D2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_D2_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_D4_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_D4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_D4_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_F2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_F2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_F2_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_F4_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_F4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_F4_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_G1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/hnst",
+    "path": "Brass/F Horn/stac/MOHorn_stac_G1_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_A2_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_B1_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_B3_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_C1_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_C3_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_D2_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_D4_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_E1_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_E3_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_F2_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_F4_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_G1_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/vcsp",
+    "path": "Strings/Cello Section/spic/spic_G3_v2_RR1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_A#0_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_A1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_B2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_C#2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_C1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_D1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_E0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_E0_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_E1_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_E2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_F#0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_F#0_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_F#1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_G#1_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_G#2_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v1_rr1.wav"
+   },
+   {
+    "folder": "vsco2/cbsp",
+    "path": "Strings/Solo Contrabass/Spic/BKCtbss_Spic_G0_v3_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnsp",
+    "path": "Strings/Violin Section/Spic/VlnEns_Spic_A2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnsp",
+    "path": "Strings/Violin Section/Spic/VlnEns_Spic_A3_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnsp",
+    "path": "Strings/Violin Section/Spic/VlnEns_Spic_B2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnsp",
+    "path": "Strings/Violin Section/Spic/VlnEns_Spic_B4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnsp",
+    "path": "Strings/Violin Section/Spic/VlnEns_Spic_C4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnsp",
+    "path": "Strings/Violin Section/Spic/VlnEns_Spic_D3_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnsp",
+    "path": "Strings/Violin Section/Spic/VlnEns_Spic_D5_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnsp",
+    "path": "Strings/Violin Section/Spic/VlnEns_Spic_E4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnsp",
+    "path": "Strings/Violin Section/Spic/VlnEns_Spic_F#3_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnsp",
+    "path": "Strings/Violin Section/Spic/VlnEns_Spic_G2_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/vlnsp",
+    "path": "Strings/Violin Section/Spic/VlnEns_Spic_G4_v2_rr1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varWood/Camo's Shaker/shake1.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varWood/Camo's Shaker/shake2.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varWood/Camo's Shaker/shake3.wav"
+   },
+   {
+    "folder": "vsco2/perc",
+    "path": "VSCO 1 Percussion/varWood/Camo's Shaker/shake4.wav"
+   }
+  ]
+ },
+ "freesound": [
+  {
+   "folder": "fs_erhu",
+   "id": "467484",
+   "title": "009-Erhu-D6.wav",
+   "author": "tarane468",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/tarane468/sounds/467484/"
+  },
+  {
+   "folder": "fs_erhu",
+   "id": "467483",
+   "title": "005-Erhu-D5.wav",
+   "author": "tarane468",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/tarane468/sounds/467483/"
+  },
+  {
+   "folder": "fs_erhu",
+   "id": "467482",
+   "title": "006-Erhu-F5.wav",
+   "author": "tarane468",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/tarane468/sounds/467482/"
+  },
+  {
+   "folder": "fs_erhu",
+   "id": "467481",
+   "title": "007-Erhu-G#5.wav",
+   "author": "tarane468",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/tarane468/sounds/467481/"
+  },
+  {
+   "folder": "fs_erhu",
+   "id": "467480",
+   "title": "008-Erhu-B5.wav",
+   "author": "tarane468",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/tarane468/sounds/467480/"
+  },
+  {
+   "folder": "fs_erhu",
+   "id": "467479",
+   "title": "001-Erhu D4.wav",
+   "author": "tarane468",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/tarane468/sounds/467479/"
+  },
+  {
+   "folder": "fs_erhu",
+   "id": "467478",
+   "title": "002-Erhu-F4.wav",
+   "author": "tarane468",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/tarane468/sounds/467478/"
+  },
+  {
+   "folder": "fs_erhu",
+   "id": "467477",
+   "title": "003-Erhu-G#4.wav",
+   "author": "tarane468",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/tarane468/sounds/467477/"
+  },
+  {
+   "folder": "fs_erhu",
+   "id": "467476",
+   "title": "004-Erhu-B4.wav",
+   "author": "tarane468",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/tarane468/sounds/467476/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384960",
+   "title": "Flute Dizi C_081_A6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384960/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384961",
+   "title": "Flute Dizi C_086_D7.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384961/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384962",
+   "title": "Flute Dizi C_085_C#7.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384962/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384959",
+   "title": "Flute Dizi C_082_A#6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384959/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384958",
+   "title": "Flute Dizi C_083_B6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384958/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384956",
+   "title": "Flute Dizi C_077_F6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384956/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384957",
+   "title": "Flute Dizi C_084_C7.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384957/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384955",
+   "title": "Flute Dizi C_078_F#6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384955/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384954",
+   "title": "Flute Dizi C_079_G6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384954/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384953",
+   "title": "Flute Dizi C_080_G#6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384953/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384952",
+   "title": "Flute Dizi C_091_G7.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384952/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384951",
+   "title": "Flute Dizi C_088_E7.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384951/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384950",
+   "title": "Flute Dizi C_087_D#7.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384950/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384949",
+   "title": "Flute Dizi C_090_F#7.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384949/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384948",
+   "title": "Flute Dizi C_089_F7.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384948/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384946",
+   "title": "Flute Dizi C_075_D#6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384946/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384945",
+   "title": "Flute Dizi C_076_E6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384945/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384944",
+   "title": "Flute Dizi C_071_B5.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384944/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384943",
+   "title": "Flute Dizi C_072_C6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384943/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384942",
+   "title": "Flute Dizi C_073_C#6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384942/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384941",
+   "title": "Flute Dizi C_074_D6.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384941/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384940",
+   "title": "Flute Dizi C_067_G5.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384940/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384939",
+   "title": "Flute Dizi C_068_G#5.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384939/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384938",
+   "title": "Flute Dizi C_069_A5.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384938/"
+  },
+  {
+   "folder": "fs_dizi",
+   "id": "384937",
+   "title": "Flute Dizi C_070_A#5.wav",
+   "author": "Hypnotriod",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Hypnotriod/sounds/384937/"
+  },
+  {
+   "folder": "fs_muyu",
+   "id": "607215",
+   "title": "Mokugyo.wav",
+   "author": "jonopodmore",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/jonopodmore/sounds/607215/"
+  },
+  {
+   "folder": "fs_tblock",
+   "id": "863784",
+   "title": "Temple Blocks (5pcs) - Hard Wood Mallets",
+   "author": "sazanami12",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/sazanami12/sounds/863784/"
+  },
+  {
+   "folder": "fs_nao",
+   "id": "452400",
+   "title": "cymbal splash hit nearby chinese opera in park.flac",
+   "author": "kyles",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/kyles/sounds/452400/"
+  },
+  {
+   "folder": "fs_taiko",
+   "id": "486140",
+   "title": "taiko.wav",
+   "author": "Anuj_Shrestha1",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Anuj_Shrestha1/sounds/486140/"
+  },
+  {
+   "folder": "fs_taiko",
+   "id": "486141",
+   "title": "taiko2.wav",
+   "author": "Anuj_Shrestha1",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Anuj_Shrestha1/sounds/486141/"
+  },
+  {
+   "folder": "fs_guzheng",
+   "id": "396868",
+   "title": "LOVELY CHINESE GUZHENG PLUCKED.wav",
+   "author": "Pufermufin",
+   "license": "CC0 1.0",
+   "url": "https://freesound.org/people/Pufermufin/sounds/396868/"
+  }
+ ]
+}
