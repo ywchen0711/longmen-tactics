@@ -16,30 +16,65 @@ function outline(g, w, h) {
   }
   d.data.set(out); g.putImageData(d, 0, 0);
 }
-// a 32×32 ground texture from a base colour
+// a 32×32 texture for ONE tile top, laid out on the tile's own grid (the map maps it onto the diamond, so every line
+// runs parallel to the tile's edges): flagstones, bricks, planks and roof tiles meet the tile border exactly; natural
+// ground gets a few small marks from one of four clean variants (never random smears)
 export function groundTex(base, kind = '', variant = 0) {
   const key = `g|${base}|${kind}|${variant}`;
   if (cache.has(key)) return cache.get(key);
   const c = mk(32, 32), g = c.getContext('2d'), r = rnd(hash(base + kind) + variant * 977);
-  g.fillStyle = base; g.fillRect(0, 0, 32, 32);
-  const d = shade(base, -0.12), l = shade(base, 0.1);
+  const R = (x, y, w, h, f) => { g.fillStyle = f; g.fillRect(x, y, w, h); };
+  R(0, 0, 32, 32, base);
+  const dk = shade(base, -0.16), dk2 = shade(base, -0.28), lt = shade(base, 0.12), lt2 = shade(base, 0.22);
+  // marks on a 4×4 lattice of 8px cells, one optional mark per cell, so they spread evenly
+  const lattice = (fn, p = 0.5) => { for (let cy = 0; cy < 4; cy++) for (let cx = 0; cx < 4; cx++) { if (r() > p) continue; fn(cx * 8 + 2 + Math.floor(r() * 4), cy * 8 + 2 + Math.floor(r() * 4)); } };
   if (kind === 'roof' || kind === 'goldroof') {
-    // rows of curved tiles with dark gaps between them
-    for (let y = 0; y < 32; y += 6) { g.fillStyle = shade(base, -0.3); g.fillRect(0, y + 5, 32, 1); for (let x = (y / 6) % 2 ? 2 : 0; x < 32; x += 4) { g.fillStyle = shade(base, 0.16); g.fillRect(x, y, 2, 4); g.fillStyle = shade(base, -0.18); g.fillRect(x + 3, y, 1, 5); } }
-  } else if (kind === 'red') {
-    for (let x = 0; x < 32; x += 8) { g.fillStyle = shade(base, -0.25); g.fillRect(x, 0, 1, 32); g.fillStyle = shade(base, 0.12); g.fillRect(x + 1, 0, 1, 32); }
+    // rows of half-round tiles running across the tile, a dark gutter under each row
+    for (let y = 0; y < 32; y += 8) { R(0, y + 7, 32, 1, dk2); for (let x = 0; x < 32; x += 4) { R(x, y, 3, 6, lt); R(x, y, 1, 6, lt2); R(x + 3, y, 1, 7, dk); } }
+    if (kind === 'goldroof') for (let y = 0; y < 32; y += 8) for (let x = 0; x < 32; x += 4) R(x + 1, y + 1, 1, 2, '#ffe6a0');
+  } else if (kind === 'red' || kind === 'wood') {
+    // floor boards: four 8px boards, a seam between each, nail heads at the ends
+    for (let x = 0; x < 32; x += 8) { R(x, 0, 1, 32, dk2); R(x + 1, 0, 1, 32, lt); const off = (x / 8) % 2 ? 16 : 0; R(x + 1, off, 7, 1, dk); R(x + 3, (off + 3) % 32, 1, 1, dk2); R(x + 6, (off + 12) % 32, 2, 1, dk); }
+    if (kind === 'red') { R(0, 0, 32, 1, '#c8963a'); R(0, 31, 32, 1, '#c8963a'); }
+  } else if (kind === 'stone') {
+    // four flagstones per tile, each a slightly different shade, mortar on the tile border too
+    for (let j = 0; j < 2; j++) for (let i = 0; i < 2; i++) { const k = [0, -0.06, 0.05, -0.03][(i + j * 2 + variant) % 4]; R(i * 16 + 1, j * 16 + 1, 14, 14, shade(base, k)); R(i * 16 + 1, j * 16 + 1, 14, 1, shade(base, k + 0.12)); R(i * 16 + 1, j * 16 + 14, 14, 1, shade(base, k - 0.1)); }
+    R(0, 0, 32, 1, dk2); R(0, 16, 32, 1, dk2); R(0, 0, 1, 32, dk2); R(16, 0, 1, 32, dk2);
+  } else if (kind === 'brick') {
+    // grey bricks in a running bond, 16×8, joints lined up with the tile edges
+    for (let y = 0; y < 32; y += 8) { R(0, y, 32, 1, dk2); for (let x = ((y / 8) % 2) * 8; x < 40; x += 16) { R(x % 32, y, 1, 8, dk2); R((x + 1) % 32, y + 1, 14, 1, lt); } }
+  } else if (kind === 'marble') {
+    // white jade slabs: one big slab with a carved border
+    R(0, 0, 32, 1, dk); R(0, 0, 1, 32, dk); R(1, 1, 30, 1, lt2); R(1, 1, 1, 30, lt2); R(3, 3, 26, 26, shade(base, 0.04)); R(3, 3, 26, 1, dk); R(3, 3, 1, 26, dk); R(4, 28, 25, 1, lt2); R(28, 4, 1, 25, lt2);
+  } else if (kind === 'crystal') {
+    R(0, 0, 32, 1, dk); R(0, 0, 1, 32, dk); for (let i = 0; i < 32; i++) { R(i, i, 1, 1, lt2); R(31 - i, i, 1, 1, lt); } R(6, 10, 3, 1, '#ffffff'); R(7, 9, 1, 3, '#ffffff');
+  } else if (kind === 'ice') {
+    R(0, 0, 32, 1, lt2); R(0, 0, 1, 32, lt2); for (let i = 4; i < 14; i++) R(i, 18 - i, 1, 1, '#ffffff'); for (let i = 18; i < 26; i++) R(i, 40 - i, 1, 1, lt2);
+  } else if (kind === 'void') {
+    lattice((x, y) => { R(x, y, 3, 1, '#6a3a7a'); R(x + 1, y + 1, 1, 2, '#6a3a7a'); }, 0.25);
+  } else if (kind === 'water' || kind === 'deep' || kind === 'lava') {
+    // drawn live
   } else {
-    for (let i = 0; i < 46; i++) { g.fillStyle = r() < 0.55 ? d : l; g.fillRect(Math.floor(r() * 32), Math.floor(r() * 32), 1 + Math.floor(r() * 3), 1 + Math.floor(r() * 2)); }
-    if (['grass', 'moss'].includes(kind)) for (let i = 0; i < 4; i++) { g.fillStyle = '#9a7a4a'; g.fillRect(Math.floor(r() * 30), Math.floor(r() * 30), 2, 1); }
-    if (['brick', 'stone', 'marble'].includes(kind)) { g.fillStyle = shade(base, -0.18); const s = kind === 'stone' ? 16 : 8; for (let y = 0; y < 32; y += s) { g.fillRect(0, y + s - 1, 32, 1); for (let x = (y / s) % 2 ? s / 2 : 0; x < 32; x += s) g.fillRect(x, y, 1, s - 1); } }
-    if (kind === 'wood') { g.fillStyle = shade(base, -0.25); for (let x = 0; x < 32; x += 6) g.fillRect(x, 0, 1, 32); }
-    if (kind === 'crystal') { g.fillStyle = 'rgba(255,255,255,.35)'; for (let i = 0; i < 6; i++) { const x = Math.floor(r() * 28), y = Math.floor(r() * 28); g.fillRect(x, y, 3, 1); g.fillRect(x + 1, y - 1, 1, 3); } }
+    // natural ground: grass blades / pebbles / snow glints in an even lattice, plus a soft patch of colour
+    R(4 + (variant % 2) * 12, 4 + (variant >> 1) * 12, 12, 12, shade(base, 0.04));
+    if (kind === 'grass' || kind === 'moss') {
+      lattice((x, y) => { R(x, y, 1, 3, dk2); R(x + 2, y + 1, 1, 2, dk2); R(x + 1, y - 1, 1, 3, lt2); }, 0.55);
+      if (variant === 1) { R(21, 9, 2, 2, '#f0e6c8'); R(9, 23, 2, 2, '#f0c84a'); }
+      if (variant === 3) { R(12, 14, 2, 2, '#e8909a'); }
+    } else if (kind === 'swamp') {
+      lattice((x, y) => { R(x, y, 4, 1, shade(base, -0.2)); R(x + 1, y + 1, 2, 1, '#7a9a6a'); }, 0.4);
+    } else if (kind === 'snow') {
+      lattice((x, y) => { R(x, y, 2, 1, '#ffffff'); R(x + 1, y + 2, 1, 1, '#c8d4e2'); }, 0.45);
+    } else {
+      // earth, sand, ash: pebbles with a lit top
+      lattice((x, y) => { R(x, y + 1, 3, 1, dk); R(x, y, 2, 1, lt); }, 0.45);
+    }
   }
   cache.set(key, c);
   return c;
 }
 // upright sprites: { c, ax, ay, w, h } with the foot at (ax, ay)
-const SIZE = { tree: [14, 20], willow: [16, 22], pine: [14, 22], snowpine: [12, 22], bamboo: [9, 26], rock: [12, 9], tuft: [8, 7], flower: [6, 5], pebble: [5, 3], peak: [30, 30], citytown: [30, 26], hut: [20, 18],
+const SIZE = { tree: [14, 20], willow: [16, 22], pine: [14, 22], snowpine: [12, 22], bamboo: [15, 28], rock: [12, 9], tuft: [8, 7], flower: [6, 5], pebble: [5, 3], peak: [30, 30], citytown: [30, 26], hut: [20, 18],
   lantern: [8, 16], grave: [10, 11], censer: [12, 11], crate: [10, 9], reed: [8, 14], deadtree: [14, 20], coral: [12, 14], pillar: [8, 28] };
 export function sprite(kind, variant = 0, col = '#2a6aa0') {
   const key = `s|${kind}|${variant}|${col}`;
@@ -65,9 +100,10 @@ export function sprite(kind, variant = 0, col = '#2a6aa0') {
       break;
     }
     case 'bamboo': {
-      const k = ['#4e8a3a', '#5a9a44', '#447a32'][variant % 3];
-      for (const [x, top] of [[2, 1], [5, 4]]) { R(x, top, 2, H - top, k); R(x, top, 1, H - top, shade(k, 0.25)); for (let y = top + 4; y < H; y += 5) R(x, y, 2, 1, shade(k, -0.35)); }
-      R(0, 3, 3, 1, k); R(6, 1, 3, 1, k); R(0, 9, 2, 1, k); R(7, 7, 2, 1, k); R(7, 13, 2, 1, k);
+      // a clump of three straight culms, nodes every five pixels, leaves in short level sprays
+      const k = ['#4e8a3a', '#5a9a44', '#447a32'][variant % 3], tops = [[[2, 6], [6, 1], [10, 4]], [[2, 3], [6, 0], [10, 6]], [[2, 5], [6, 2], [10, 1]]][variant % 3];
+      for (const [x, top] of tops) { R(x, top, 2, H - top, k); R(x, top, 1, H - top, shade(k, 0.25)); for (let y = top + 4; y < H - 1; y += 5) R(x, y, 2, 1, shade(k, -0.35)); }
+      for (const [x, top] of tops) { R(x - 2, top + 3, 2, 1, shade(k, 0.1)); R(x + 2, top + 2, 3, 1, shade(k, 0.1)); R(x + 2, top + 9, 2, 1, k); }
       break;
     }
     case 'rock': R(1, 3, 10, 6, '#8e8676'); R(3, 1, 6, 3, '#a49c8c'); R(3, 1, 3, 2, '#c0b8a8'); R(7, 5, 4, 4, '#6e665a'); break;

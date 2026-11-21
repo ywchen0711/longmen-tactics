@@ -130,7 +130,7 @@ function world() {
       g.fillStyle = n.kind === 'town' ? '#e8c46a' : n.kind === 'hidden' ? '#9a5ad0' : n.kind === 'site' ? '#c8443a' : '#4a8a4a';
       g.strokeStyle = '#000'; g.lineWidth = 2;
       g.strokeStyle = '#2e1e12'; g.lineWidth = 3;
-      if (n.kind === 'town') { const o = deco('citytown', 0, '#2a6aa0'), k = 1.4; g.drawImage(o.c, Math.round(x - o.ax * k), Math.round(y + 8 - o.ay * k), o.w * k, o.h * k); }
+      if (n.kind === 'town') { const o = deco('citytown', 0, '#2a6aa0'), k = Math.max(1, Math.round(s * 1.6)); g.imageSmoothingEnabled = false; g.drawImage(o.c, Math.round(x - o.ax * k), Math.round(y + 8 - o.ay * k), o.w * k, o.h * k); }
       else if (n.kind === 'hidden') { g.beginPath(); for (let k = 0; k < 10; k++) { const a = k * Math.PI / 5 - Math.PI / 2, rr = k % 2 ? r * 0.5 : r * 1.3; g.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); } g.closePath(); g.fill(); g.stroke(); }
       else { g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); g.stroke(); }
       if (id === selected) { g.strokeStyle = '#fff'; g.lineWidth = 2; g.beginPath(); g.arc(x, y, r + 6 + Math.sin(t * 4) * 2, 0, Math.PI * 2); g.stroke(); }
@@ -152,9 +152,9 @@ function world() {
     const dx = walk ? P(NODES[walk.b])[0] - P(NODES[walk.a])[0] : 1, dy = walk ? P(NODES[walk.b])[1] - P(NODES[walk.a])[1] : 1;
     const back = moving && dy < -Math.abs(dx) * 0.6, flip = dx > 0;
     const pose = moving ? (Math.floor(t * 8) % 2 ? 'walk0' : 'walk1') : (Math.floor(t * 2) % 2 ? 'idle0' : 'idle1');
-    const img = person(hero, back, pose), sc = SPR_SCALE * 1.15, w = SPR_W * sc, h = SPR_H * sc, hop = moving ? Math.abs(Math.sin(t * 16)) * 3 : 0;
+    const img = person(hero, back, pose), sc = s >= 0.8 ? 3 : 2, w = SPR_W * sc, h = SPR_H * sc, hop = moving ? Math.abs(Math.sin(t * 16)) * 3 : 0;
     g.fillStyle = 'rgba(0,0,0,.35)'; g.beginPath(); g.ellipse(px, py + 1, 12, 4, 0, 0, Math.PI * 2); g.fill();
-    g.save(); g.imageSmoothingEnabled = false; g.translate(px, py - hop); if (flip) g.scale(-1, 1); g.drawImage(img, -w / 2, -h + 4, w, h); g.restore();
+    g.save(); g.imageSmoothingEnabled = false; g.translate(Math.round(px), Math.round(py - hop)); if (flip) g.scale(-1, 1); g.drawImage(img, -w / 2, -h + sc * 2, w, h); g.restore();
     const fx = px + (flip ? -16 : 16), fy = py - hop;
     g.fillStyle = '#5a3a1a'; g.fillRect(fx - 1, fy - 52, 3, 46); g.fillStyle = '#2a6aa0'; g.beginPath(); g.moveTo(fx + 2, fy - 52); g.lineTo(fx + 24, fy - 46 + Math.sin(t * (moving ? 9 : 3)) * 3); g.lineTo(fx + 2, fy - 38); g.fill(); g.strokeStyle = '#d8e8ff'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(fx + 5, fy - 49); g.lineTo(fx + 16, fy - 43); g.stroke();
     // the names, over the company's banner: kept inside the map (a long English name at the edge was cut off) and, on a small map, moved above the
@@ -231,9 +231,11 @@ function world() {
 const BIOME = { bamboo: '#6e9a52', ridge: '#8a9a5a', graveyard: '#7a7a5e', marsh: '#5e7a52', docks: '#9ab0a8', boats: '#8ab0b8', pavilion: '#a8c0c0', rooftops: '#b4a88a', temple: '#c0b08a', pagoda: '#b8a47a', hall: '#a0705a',
   pass: '#9a9478', snow: '#e8ecee', cliff: '#9a9688', volcano: '#a0644a', nether: '#6a5a72', courtyard: '#b8a882', highway: '#a8a470', village: '#a0a064' };
 // the river that gives the Cold River its name, in map coordinates
-const RIVER = [[1000, 420], [930, 470], [850, 520], [760, 545], [690, 570], [650, 630], [610, 700]];
+const RIVER = [[1000, 420], [930, 470], [850, 520], [760, 545], [690, 570], [650, 630], [610, 700]], CANAL = [[530, 500], [600, 540], [690, 570]];
+// a line redrawn in clean straight runs: each leg goes at 45° first, then straight on (no wobbly in-between angles)
+function octi(pts) { const out = [pts[0]]; for (let i = 1; i < pts.length; i++) { const [x0, y0] = out[out.length - 1], [x1, y1] = pts[i], dx = x1 - x0, dy = y1 - y0, m = Math.min(Math.abs(dx), Math.abs(dy)); out.push([x0 + Math.sign(dx) * m, y0 + Math.sign(dy) * m]); out.push([x1, y1]); } return out; }
 function paintLand(P, s, open) {
-  const c = document.createElement('canvas'); c.width = cv.width; c.height = cv.height; const g = c.getContext('2d');
+  const c = document.createElement('canvas'); c.width = cv.width; c.height = cv.height; const g = c.getContext('2d'); g.imageSmoothingEnabled = false;
   g.fillStyle = '#d9c9a3'; g.fillRect(0, 0, c.width, c.height);
   // paper grain
   { const r = drnd(99); for (let i = 0; i < 2600; i++) { g.fillStyle = r() < 0.5 ? 'rgba(90,70,40,.06)' : 'rgba(255,250,235,.10)'; g.fillRect(Math.floor(r() * c.width), Math.floor(r() * c.height), 2 + Math.floor(r() * 3), 1); } }
@@ -242,14 +244,27 @@ function paintLand(P, s, open) {
   const rgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
   for (const n of Object.values(NODES)) { const [x, y] = P(n); blob(x, y, 120 * s, rgba(BIOME[n.theme] || '#a8a470', 0.55)); }
   // the Cold River and its tributary canal
-  const line = (pts, wdt, col) => { g.strokeStyle = col; g.lineWidth = wdt; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); pts.forEach(([x, y], i) => { const [px, py] = P({ x, y }); if (i) g.lineTo(px, py); else g.moveTo(px, py); }); g.stroke(); };
-  line(RIVER, 26 * s, 'rgba(70,110,130,.35)'); line(RIVER, 14 * s, 'rgba(80,130,160,.75)'); line(RIVER, 4 * s, 'rgba(220,235,240,.5)');
-  line([[530, 500], [600, 540], [690, 570]], 8 * s, 'rgba(80,130,160,.6)');
-  // ink mountains near the high places, bamboo and pines around the green ones
-  { const r = drnd(777), things = [];
-    for (const n of Object.values(NODES)) { const [x, y] = P(n), high = ['snow', 'cliff', 'pass', 'volcano', 'ridge', 'nether'].includes(n.theme);
-      for (let k = 0; k < (high ? 4 : 6); k++) { const a = r() * Math.PI * 2, d = (45 + r() * 50) * s, tx = x + Math.cos(a) * d, ty = y + Math.sin(a) * d * 0.8; things.push({ y: ty, kind: high ? 'peak' : n.theme === 'snow' ? 'snowpine' : n.theme === 'bamboo' || n.theme === 'marsh' ? 'bamboo' : r() < 0.5 ? 'pine' : 'willow', x: tx, v: Math.floor(r() * 3) }); } }
-    for (const t of things.sort((a, b) => a.y - b.y)) { const o = deco(t.kind, t.v), k = Math.max(1, s * (t.kind === 'peak' ? 1.6 : 1.8)); g.drawImage(o.c, Math.round(t.x - o.ax * k), Math.round(t.y - o.ay * k), Math.round(o.w * k), Math.round(o.h * k)); } }
+  const line = (pts, wdt, col) => { g.strokeStyle = col; g.lineWidth = wdt; g.lineCap = 'butt'; g.lineJoin = 'miter'; g.beginPath(); pts.forEach(([x, y], i) => { const [px, py] = P({ x, y }); if (i) g.lineTo(px, py); else g.moveTo(px, py); }); g.stroke(); };
+  const R2 = octi(RIVER), C2 = octi(CANAL); g.lineCap = 'butt';
+  line(R2, 26 * s, 'rgba(70,110,130,.35)'); line(R2, 14 * s, 'rgba(80,130,160,.8)'); line(R2, 3 * s, 'rgba(220,235,240,.55)');
+  line(C2, 12 * s, 'rgba(70,110,130,.3)'); line(C2, 7 * s, 'rgba(80,130,160,.7)');
+  // scenery on a regular lattice (every 46 map units, odd rows shifted by half), one clean sprite per point at a
+  // whole-number scale: ink peaks near the high places, bamboo, pines and willows near the green ones; kept off the
+  // places, the roads and the river so nothing is drawn over them
+  { const step = 46, things = [], ks = Math.max(1, Math.round(s * 1.8)), kp = Math.max(1, Math.round(s * 1.6));
+    const segD = (px, py, [x1, y1], [x2, y2]) => { const dx = x2 - x1, dy = y2 - y1, L = dx * dx + dy * dy || 1, k = Math.max(0, Math.min(1, ((px - x1) * dx + (py - y1) * dy) / L)); return Math.hypot(px - x1 - dx * k, py - y1 - dy * k); };
+    const roads = LINKS.map(([a, b]) => [[NODES[a].x, NODES[a].y], [NODES[b].x, NODES[b].y]]), river = octi(RIVER), canal = octi(CANAL);
+    for (let row = 0, y = 30; y < 700; y += step * 0.8, row++) for (let x = 24 + (row % 2) * step / 2; x < 1000; x += step) {
+      let best = null, bd = 1e9; for (const n of Object.values(NODES)) { const d = Math.hypot(n.x - x, (n.y - y) * 1.2); if (d < bd) { bd = d; best = n; } }
+      if (!best || bd < 40 || bd > 125) continue;
+      if (roads.some((r) => segD(x, y, ...r) < 20)) continue;
+      if ([river, canal].some((L) => L.some((p, i) => i && segD(x, y, L[i - 1], p) < 22))) continue;
+      const high = ['snow', 'cliff', 'pass', 'volcano', 'ridge', 'nether'].includes(best.theme), v = (Math.round(x / step) * 7 + row * 3) % 3;
+      const kind = high ? 'peak' : best.theme === 'snow' ? 'snowpine' : best.theme === 'bamboo' || best.theme === 'marsh' ? 'bamboo' : (row + Math.round(x / step)) % 2 ? 'pine' : 'willow';
+      if (high && (row + Math.round(x / step)) % 2) continue;   // peaks are big: every other point
+      const [px, py] = P({ x, y }); things.push({ x: px, y: py, kind, v });
+    }
+    for (const t of things.sort((a, b) => a.y - b.y)) { const o = deco(t.kind, t.v), k = t.kind === 'peak' ? kp : ks; g.drawImage(o.c, Math.round(t.x - o.ax * k), Math.round(t.y - o.ay * k), o.w * k, o.h * k); } }
   // a border like a painted scroll
   g.strokeStyle = 'rgba(120,40,30,.55)'; g.lineWidth = 6; g.strokeRect(8, 8, c.width - 16, c.height - 16); g.strokeStyle = 'rgba(120,40,30,.3)'; g.lineWidth = 2; g.strokeRect(16, 16, c.width - 32, c.height - 32);
   // fog over the unknown

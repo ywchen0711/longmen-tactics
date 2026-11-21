@@ -1,7 +1,7 @@
 // The battle map seen from above at an angle: raised columns of ground, the units standing on them,
 // coloured overlays for moving and aiming, and the little effects (numbers, flashes, spell rings).
 import { TERRAIN, ELEMENTS, STATUS, statusTags } from '../data/core.js';
-import { groundTex, sprite as deco, tileHash, rnd as drnd } from './deco.js';
+import { groundTex, sprite as deco, tileHash } from './deco.js';
 import { person, monster, SPR_SCALE } from './sprites.js';
 import { MONSTERS } from '../data/monsters.js';
 
@@ -108,11 +108,6 @@ export class IsoView {
     const i = (1 - k) / 2;
     return [[t.x + i, t.y + i], [t.x + 1 - i, t.y + i], [t.x + 1 - i, t.y + 1 - i], [t.x + i, t.y + 1 - i]].map(([x, y]) => this.project(x, y, h));
   }
-  pattern(col, kind, variant) {
-    this.pats = this.pats || new Map(); const key = col + kind + variant;
-    if (!this.pats.has(key)) this.pats.set(key, this.g.createPattern(groundTex(col, kind, variant), 'repeat'));
-    return this.pats.get(key);
-  }
   drawTile(t) {
     const g = this.g, z = this.zoom, T = TERRAIN[t.t] || TERRAIN.grass, map = this.map;
     const water = t.t === 'water' || t.t === 'deep', lava = t.t === 'lava';
@@ -128,6 +123,13 @@ export class IsoView {
       g.fillStyle = shade(T.side, -0.12 - (light > 0 ? 0.22 * light : 0) + (light < 0 ? 0.05 : 0));
       g.beginPath(); g.moveTo(ax, ay); g.lineTo(bx, by); g.lineTo(bx, by + drop); g.lineTo(ax, ay + drop); g.closePath(); g.fill();
       g.strokeStyle = 'rgba(0,0,0,.12)'; g.lineWidth = 1; for (let d = HS * z; d < drop; d += HS * z) { g.beginPath(); g.moveTo(ax, ay + d); g.lineTo(bx, by + d); g.stroke(); }
+      // a house wall: a dark eave shadow under the roof and timber posts at the corners, all running with the tile edges
+      if ((t.t === 'roof' || t.t === 'goldroof') && drop > 6 * z) {
+        const ev = 3 * z, pw = 3 * z, post = t.t === 'goldroof' ? '#6a1a12' : '#5a3a22';
+        g.fillStyle = 'rgba(30,20,14,.45)'; g.beginPath(); g.moveTo(ax, ay); g.lineTo(bx, by); g.lineTo(bx, by + ev); g.lineTo(ax, ay + ev); g.closePath(); g.fill();
+        const k = pw / Math.hypot(bx - ax, by - ay);
+        for (const [x0, y0, sx, sy] of [[ax, ay, bx - ax, by - ay], [bx, by, ax - bx, ay - by]]) { g.fillStyle = post; g.beginPath(); g.moveTo(x0, y0); g.lineTo(x0 + sx * k, y0 + sy * k); g.lineTo(x0 + sx * k, y0 + sy * k + drop); g.lineTo(x0, y0 + drop); g.closePath(); g.fill(); }
+      }
     }
     // the top
     let top = T.top;
@@ -136,22 +138,16 @@ export class IsoView {
     if (!water && !lava) top = shade(top, Math.min(0.22, t.h * 0.03) - 0.04);
     const poly = (pts) => { g.beginPath(); g.moveTo(...pts[0]); for (let i = 1; i < pts.length; i++) g.lineTo(...pts[i]); g.closePath(); };
     g.fillStyle = top; poly(top4); g.fill();
-    // a pixel texture over the top (not on moving water or lava), lit by height
+    // the tile's own texture mapped onto its top (its lines run with the tile's edges), lit by height
     if (!water && !lava) {
-      const pat = this.pattern(T.top, t.t, (t.x + t.y) % 2);
-      pat.setTransform(new DOMMatrix().scale(z * 1.5));
-      g.fillStyle = pat; poly(top4); g.fill();
+      const [A, B, , D] = top4, tex = groundTex(T.top, t.t, tileHash(t.x, t.y) % 4);
+      g.save(); g.setTransform((B[0] - A[0]) / 32, (B[1] - A[1]) / 32, (D[0] - A[0]) / 32, (D[1] - A[1]) / 32, A[0], A[1]); g.imageSmoothingEnabled = true; g.drawImage(tex, 0, 0); g.restore();
       const lift = Math.min(0.22, t.h * 0.03) - 0.04; if (lift) { g.fillStyle = lift > 0 ? `rgba(255,240,200,${lift})` : `rgba(0,0,0,${-lift})`; poly(top4); g.fill(); }
-    } else if (water) { g.fillStyle = 'rgba(220,240,255,.35)'; for (let i = 0; i < 2; i++) { const ph = (this.time * 0.6 + i * 0.5 + (t.x + t.y) * 0.13) % 1; const [px, py] = this.project(t.x + 0.2 + ph * 0.6, t.y + 0.3 + i * 0.35, t.h); g.fillRect(px, py, 5 * z, 1.5 * z); } }
+    } else if (water) { g.fillStyle = 'rgba(220,240,255,.35)'; for (let i = 0; i < 2; i++) { const ph = (this.time * 0.6 + i * 0.5 + (t.x + t.y) * 0.13) % 1; const [px, py] = this.project(t.x + 0.2 + ph * 0.6, t.y + 0.3 + i * 0.35, t.h); g.fillRect(Math.round(px), Math.round(py), Math.round(5 * z), Math.max(1, Math.round(1.5 * z))); } }
     // a light rim on the far edges and a dark one on the near edges
     g.lineWidth = 1;
     for (const [a, b, nx, ny] of edges) { const f = nx * s + ny * c; g.strokeStyle = f > 0.01 ? 'rgba(46,30,18,.55)' : 'rgba(255,240,200,.18)'; g.beginPath(); g.moveTo(...top4[a]); g.lineTo(...top4[b]); g.stroke(); }
     const [cx, cy] = this.sp(t.x, t.y, t.h);
-    // little things on natural ground: tufts, flowers, pebbles (they always face the camera)
-    if (!water && !lava && !t.obj && ['grass', 'dirt', 'moss', 'sand', 'snow', 'swamp'].includes(t.t)) {
-      const r = drnd(tileHash(t.x, t.y)), n = t.t === 'grass' || t.t === 'moss' ? 3 : 1;
-      for (let i = 0; i < n; i++) { const roll = r(); const kind = t.t === 'snow' || t.t === 'sand' || t.t === 'dirt' ? (roll < 0.4 ? 'pebble' : null) : roll < 0.55 ? 'tuft' : roll < 0.7 ? 'flower' : roll < 0.8 ? 'pebble' : null; const u = 0.2 + r() * 0.6, v = 0.2 + r() * 0.6; if (!kind) continue; const o = deco(kind, Math.floor(r() * 3)), [px, py] = this.project(t.x + u, t.y + v, t.h), k2 = z * 1.6; g.drawImage(o.c, px - o.ax * k2, py - o.ay * k2, o.w * k2, o.h * k2); }
-    }
     // overlays
     const m = this.marks.get(`${t.x},${t.y}`);
     if (m) { g.fillStyle = m; poly(this.corners(t, t.h, 0.82)); g.fill(); g.strokeStyle = m.replace(/[\d.]+\)$/, '0.95)'); g.lineWidth = 1.5; g.stroke(); }
@@ -159,15 +155,14 @@ export class IsoView {
     if (this.showLoot && this.treasure.some((q) => q.x === t.x && q.y === t.y && !q.taken)) { const k = (Math.sin(this.time * 5 + t.x) + 1) / 2; g.fillStyle = `rgba(255,230,120,${0.4 + k * 0.6})`; g.beginPath(); g.arc(cx, cy, (3 + k * 3) * z, 0, Math.PI * 2); g.fill(); }
     // things standing on the tile
     if (t.obj) {
-      // things standing on the tile, drawn as little upright pixel sprites (a grove for trees and bamboo)
-      const r = drnd(tileHash(t.x, t.y) + 5), k2 = z * 2.2, kind0 = t.obj === 'tree' ? 'willow' : t.obj;
-      const items = [[kind0, 0, 0]];
-      if (['bamboo', 'pine', 'snowpine', 'willow', 'reed'].includes(kind0) && r() < 0.6) items.unshift([kind0, -0.2, -0.18]);
-      if (['bamboo', 'reed'].includes(kind0)) items.push([kind0, 0.22, 0.2]);
-      if (kind0 === 'rock' || kind0 === 'crate') items.push([kind0, 0.18, 0.16]);
-      for (const [kind, du, dv] of items) { const o = deco(kind, Math.floor(r() * 3)), [px, py] = this.project(t.x + 0.5 + du, t.y + 0.5 + dv, t.h), kk = kind === 'rock' ? k2 * 1.15 : k2; g.drawImage(o.c, px - o.ax * kk, py - o.ay * kk, o.w * kk, o.h * kk); }
+      // the thing standing on the tile: one upright pixel sprite, centred on the tile, at a whole-number scale with
+      // its feet on a whole pixel; variety comes from picking one of its clean variants
+      const kind = t.obj === 'tree' ? 'willow' : t.obj, o = deco(kind, tileHash(t.x, t.y) % 3), k = this.px(2.2);
+      g.save(); g.imageSmoothingEnabled = false; g.drawImage(o.c, Math.round(cx - o.ax * k), Math.round(cy - o.ay * k + 2 * k), o.w * k, o.h * k); g.restore();
     }
   }
+  // a whole-number pixel scale for sprites at the current zoom (pixel art never scales by fractions)
+  px(base) { const v = base * this.zoom; return v < 1.25 ? 1 : Math.max(2, Math.round(v)); }
 
   drawUnit(u, t, lift = 0) {
     const g = this.g, z = this.zoom, an = this.anim.get(u.id) || {};
@@ -177,7 +172,8 @@ export class IsoView {
     const { back, flip } = this.facing(an.dir ?? u.dir);
     const pose = u.dead ? 'dead' : an.pose || (Math.floor(this.time * 2 + u.id) % 2 ? 'idle1' : 'idle0');
     const mon = u.u.mon, img = mon ? monster(mon, back, pose) : person(u.u, back, pose);
-    const big = mon ? (MONSTERS[mon].size || 1) : 1, k = (mon ? 2.6 : SPR_SCALE) * z * big, sw = img.width * k, sh = img.height * k;
+    const big = mon ? (MONSTERS[mon].size || 1) : 1, k = this.px((mon ? 2.6 : SPR_SCALE) * big), sw = img.width * k, sh = img.height * k;
+    cx = Math.round(cx); cy = Math.round(cy);
     const team = TEAM[u.st && u.st.charm ? (u.side === 'foe' ? 'ally' : 'foe') : u.side] || TEAM.ally;
     g.save(); g.imageSmoothingEnabled = false;
     // a clean ring in the team's colour under the feet (none for the fallen)
@@ -187,7 +183,7 @@ export class IsoView {
       g.strokeStyle = team.ring; g.lineWidth = Math.max(1.5, 2 * z); g.beginPath(); g.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2); g.stroke();
     }
     if (u.charging) { const s = (Math.sin(this.time * 6) + 1) / 2; g.strokeStyle = `rgba(190,170,255,${0.4 + s * 0.5})`; g.lineWidth = 2; g.beginPath(); g.ellipse(cx, cy, 23 * z, 10 * z, 0, 0, Math.PI * 2); g.stroke(); }
-    g.translate(cx, cy + 4 * z); if (flip) g.scale(-1, 1);
+    g.translate(cx, cy + Math.round(4 * z)); if (flip) g.scale(-1, 1);
     // the sprite with a thin outline in the team's colour, so friend and foe never blur together
     const pad = k, base = an.flash ? silhouette(img, '#ffffff') : u.st && u.st.stop ? silhouette(img, 'rgba(150,160,190,.75)') : img;
     if (u.bound) g.globalAlpha = 0.85;
