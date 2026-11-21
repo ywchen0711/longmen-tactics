@@ -248,23 +248,36 @@ function paintLand(P, s, open) {
   const R2 = octi(RIVER), C2 = octi(CANAL); g.lineCap = 'butt';
   line(R2, 26 * s, 'rgba(70,110,130,.35)'); line(R2, 14 * s, 'rgba(80,130,160,.8)'); line(R2, 3 * s, 'rgba(220,235,240,.55)');
   line(C2, 12 * s, 'rgba(70,110,130,.3)'); line(C2, 7 * s, 'rgba(80,130,160,.7)');
-  // scenery on a regular lattice (every 46 map units, odd rows shifted by half), one clean sprite per point at a
-  // whole-number scale: ink peaks near the high places, bamboo, pines and willows near the green ones; kept off the
-  // places, the roads and the river so nothing is drawn over them
-  { const step = 46, things = [], ks = Math.max(1, Math.round(s * 1.8)), kp = Math.max(1, Math.round(s * 1.6));
-    const segD = (px, py, [x1, y1], [x2, y2]) => { const dx = x2 - x1, dy = y2 - y1, L = dx * dx + dy * dy || 1, k = Math.max(0, Math.min(1, ((px - x1) * dx + (py - y1) * dy) / L)); return Math.hypot(px - x1 - dx * k, py - y1 - dy * k); };
-    const roads = LINKS.map(([a, b]) => [[NODES[a].x, NODES[a].y], [NODES[b].x, NODES[b].y]]), river = octi(RIVER), canal = octi(CANAL);
-    for (let row = 0, y = 30; y < 700; y += step * 0.8, row++) for (let x = 24 + (row % 2) * step / 2; x < 1000; x += step) {
+  // scenery on a sparse regular lattice (odd rows shifted by half), one clean sprite per point at a whole-number
+  // scale: ink peaks near the high places, bamboo, pines and willows near the green ones. Every sprite's whole
+  // picture (not just its foot) is kept clear of the other sprites, the roads, the river and the places with their
+  // names, so nothing is ever drawn over anything else
+  { const sx = 52, sy = 48, things = [], ks = Math.max(1, Math.round(s * 1.8)), kp = Math.max(1, Math.round(s * 1.6));
+    const toPx = (pts) => pts.map(([x, y]) => P({ x, y }));
+    const roads = LINKS.map(([a, b]) => toPx([[NODES[a].x, NODES[a].y], [NODES[b].x, NODES[b].y]])), river = toPx(octi(RIVER)), canal = toPx(octi(CANAL));
+    // does the segment a-b come within `m` pixels of the rectangle r = [x0, y0, x1, y1]?
+    const hits = (r, [ax, ay], [bx, by], m) => { const n = Math.max(1, Math.ceil(Math.hypot(bx - ax, by - ay) / 3)); for (let i = 0; i <= n; i++) { const x = ax + (bx - ax) * i / n, y = ay + (by - ay) * i / n; if (x > r[0] - m && x < r[2] + m && y > r[1] - m && y < r[3] + m) return true; } return false; };
+    const lineHits = (r, L, m) => L.some((p, i) => i && hits(r, L[i - 1], p, m));
+    // a place's marker and its name, which is printed below it or above it (the same font and offsets as the labels)
+    const fs = Math.max(12, 13 * s * 1.25); g.font = `900 ${fs}px "Noto Sans TC", sans-serif`;
+    const keepOut = Object.values(NODES).map((n) => { const [x, y] = P(n), r = 12, hw = Math.max(r + 4, g.measureText(T(n.name)).width / 2 + 6); return [x - hw, y - r - 10 - fs, x + hw, y + r + 18 + fs * 0.25]; });
+    const M0 = P({ x: -10, y: -10 }), M1 = P({ x: 1010, y: 710 });   // (nothing pokes out of the map's own area)
+    const meets = (a, b) => a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1];
+    for (let row = 0, y = 44; y < 690; y += sy, row++) for (let x = 30 + (row % 2) * sx / 2; x < 990; x += sx) {
       let best = null, bd = 1e9; for (const n of Object.values(NODES)) { const d = Math.hypot(n.x - x, (n.y - y) * 1.2); if (d < bd) { bd = d; best = n; } }
       if (!best || bd < 40 || bd > 125) continue;
-      if (roads.some((r) => segD(x, y, ...r) < 20)) continue;
-      if ([river, canal].some((L) => L.some((p, i) => i && segD(x, y, L[i - 1], p) < 22))) continue;
-      const high = ['snow', 'cliff', 'pass', 'volcano', 'ridge', 'nether'].includes(best.theme), v = (Math.round(x / step) * 7 + row * 3) % 3;
-      const kind = high ? 'peak' : best.theme === 'snow' ? 'snowpine' : best.theme === 'bamboo' || best.theme === 'marsh' ? 'bamboo' : (row + Math.round(x / step)) % 2 ? 'pine' : 'willow';
-      if (high && (row + Math.round(x / step)) % 2) continue;   // peaks are big: every other point
-      const [px, py] = P({ x, y }); things.push({ x: px, y: py, kind, v });
+      const high = ['snow', 'cliff', 'pass', 'volcano', 'ridge', 'nether'].includes(best.theme), col = Math.round(x / sx), v = (col * 7 + row * 3) % 3;
+      const kind = high ? 'peak' : best.theme === 'bamboo' || best.theme === 'marsh' ? 'bamboo' : (row + col) % 2 ? 'pine' : 'willow';
+      const o = deco(kind, v), k = kind === 'peak' ? kp : ks, [px, py] = P({ x, y });
+      const r = [Math.round(px - o.ax * k), Math.round(py - o.ay * k), 0, 0]; r[2] = r[0] + o.w * k; r[3] = r[1] + o.h * k;
+      if (r[0] < M0[0] || r[1] < M0[1] || r[2] > M1[0] || r[3] > M1[1] || keepOut.some((q) => meets(r, q))) continue;
+      if (roads.some((L) => hits(r, L[0], L[1], 5))) continue;
+      if (lineHits(r, river, 15 * s + 4) || lineHits(r, canal, 8 * s + 4)) continue;
+      const pad = [r[0] - 4, r[1] - 3, r[2] + 4, r[3] + 3];
+      if (things.some((t) => meets(pad, t.r))) continue;
+      things.push({ r, o, k });
     }
-    for (const t of things.sort((a, b) => a.y - b.y)) { const o = deco(t.kind, t.v), k = t.kind === 'peak' ? kp : ks; g.drawImage(o.c, Math.round(t.x - o.ax * k), Math.round(t.y - o.ay * k), o.w * k, o.h * k); } }
+    for (const t of things.sort((a, b) => a.r[3] - b.r[3])) g.drawImage(t.o.c, t.r[0], t.r[1], t.o.w * t.k, t.o.h * t.k); }
   // a border like a painted scroll
   g.strokeStyle = 'rgba(120,40,30,.55)'; g.lineWidth = 6; g.strokeRect(8, 8, c.width - 16, c.height - 16); g.strokeStyle = 'rgba(120,40,30,.3)'; g.lineWidth = 2; g.strokeRect(16, 16, c.width - 32, c.height - 32);
   // fog over the unknown

@@ -15,7 +15,7 @@ export const artReady = new Promise((resolve) => {
   const img = new Image();
   img.onload = () => { atlas = img; cache.clear(); resolve(); };
   img.onerror = () => resolve();
-  img.src = 'assets/art.png?v=1';
+  img.src = 'assets/art.png?v=4';
 });
 // which gallery character draws this unit
 export function artOf(u) {
