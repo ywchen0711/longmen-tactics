@@ -18,6 +18,9 @@ import ai_cut as C
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW = os.path.join(ROOT, 'art', 'chibi')
 OUT = os.path.join(ROOT, 'art', 'cut')
+# side views that came out looking right although the prompt asks for left (checked by eye at full size); every
+# game's art tool leaves these unflipped
+PAINTED_RIGHT = {'tf_oldman', 'wildboar'}
 VIEWS = {'front': 'front view, standing', 'side': 'from side, profile, walking, facing left', 'back': 'from behind, facing away, standing'}
 H, MAXW = 88, 78
 
@@ -100,7 +103,7 @@ def cut_one(c):
             except OSError:   # cut off while being written: paint it again
                 os.remove(src)
                 continue
-            if im and v == 'side':   # painted looking left (the prompt asks for it); stored facing right
+            if im and v == 'side' and c not in PAINTED_RIGHT:   # painted looking left (the prompt asks for it); stored facing right
                 im = im.transpose(Image.FLIP_LEFT_RIGHT)
             if im:
                 im.save(os.path.join(OUT, f'{c}_c{v}.png'))
