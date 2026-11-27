@@ -33,7 +33,7 @@ const load = (src, set) => new Promise((resolve) => {
 // screen pixels per sprite pixel, for a sprite drawn at `scale` screen pixels per 16 x 24 grid pixel
 export const aiScale = (img, scale) => (!img.res ? scale : img.smooth ? scale / img.res : Math.max(1, Math.round(scale / img.res * 2) / 2));
 export const aiReady = Promise.all([load('assets/ai/sprites.png?v=2', (i) => { aiSpr = i; }), load('assets/ai/portraits.webp?v=2', (i) => { aiPor = i; }),
-  load('assets/ai/chibi.png?v=1', (i) => { aiChi = i; })]);
+  load('assets/ai/chibi.png?v=2', (i) => { aiChi = i; })]);
 // view 0 front, 1 side, 2 back; breath draws it a pixel shorter, for the second idle frame
 // the detailed (chibi) sprites are small paintings, not pixel art: they are drawn smoothed, at any scale
 function aiFrame(id, view, breath = false) {
