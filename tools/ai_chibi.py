@@ -18,7 +18,7 @@ import ai_cut as C
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW = os.path.join(ROOT, 'art', 'chibi')
 OUT = os.path.join(ROOT, 'art', 'cut')
-VIEWS = {'front': 'front view, standing', 'side': 'from side, profile, walking', 'back': 'from behind, facing away, standing'}
+VIEWS = {'front': 'front view, standing', 'side': 'from side, profile, walking, facing left', 'back': 'from behind, facing away, standing'}
 H, MAXW = 88, 78
 
 
@@ -91,22 +91,6 @@ def main():
             cut_one(c)
 
 
-def faces_left(im):
-    """Which way a side view looks. In a chibi's profile the hair at the back of the head outweighs the face, so the
-    head's skin (or, with no skin showing, its whole mass) sits towards the back."""
-    a = np.asarray(im.convert('RGBA')).astype(int)
-    solid = a[:, :, 3] > 128
-    ys = np.where(solid.any(axis=1))[0]
-    top = solid.copy()
-    top[int(ys[0] + (ys[-1] - ys[0]) * 0.42):] = False
-    xs = np.where(top)[1]
-    mid = (xs.min() + xs.max()) / 2
-    R, G, B = a[:, :, 0], a[:, :, 1], a[:, :, 2]
-    skin = top & (R > 170) & (R > G + 8) & (G > B + 4) & (R - B > 35)
-    x = np.where(skin)[1].mean() if skin.sum() > 40 else xs.mean()
-    return x >= mid
-
-
 def cut_one(c):
     for v in VIEWS:
         src = os.path.join(RAW, f'{c}_{v}.png')
@@ -116,7 +100,7 @@ def cut_one(c):
             except OSError:   # cut off while being written: paint it again
                 os.remove(src)
                 continue
-            if im and v == 'side' and faces_left(im):   # every side view faces right
+            if im and v == 'side':   # painted looking left (the prompt asks for it); stored facing right
                 im = im.transpose(Image.FLIP_LEFT_RIGHT)
             if im:
                 im.save(os.path.join(OUT, f'{c}_c{v}.png'))
