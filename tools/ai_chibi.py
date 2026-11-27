@@ -4,7 +4,7 @@ down to sprite size.
 
     C:/sdenv/Scripts/python tools/ai_chibi.py [ids|all] [paint|cut|both] [seed]
         art/chibi/<id>_<view>.png    the paintings (832 x 1216)
-        art/cut/<id>_c<view>.png     the sprites, at most 78 x 88, soft edges
+        art/cut/<id>_c<view>.png     the sprites, at most 78 x 88, soft edges; side views all face right
 
 Work already on disk is skipped, so the run can be stopped and resumed.
 """
@@ -91,11 +91,33 @@ def main():
             cut_one(c)
 
 
+def faces_left(im):
+    """Which way a side view looks. In a chibi's profile the hair at the back of the head outweighs the face, so the
+    head's skin (or, with no skin showing, its whole mass) sits towards the back."""
+    a = np.asarray(im.convert('RGBA')).astype(int)
+    solid = a[:, :, 3] > 128
+    ys = np.where(solid.any(axis=1))[0]
+    top = solid.copy()
+    top[int(ys[0] + (ys[-1] - ys[0]) * 0.42):] = False
+    xs = np.where(top)[1]
+    mid = (xs.min() + xs.max()) / 2
+    R, G, B = a[:, :, 0], a[:, :, 1], a[:, :, 2]
+    skin = top & (R > 170) & (R > G + 8) & (G > B + 4) & (R - B > 35)
+    x = np.where(skin)[1].mean() if skin.sum() > 40 else xs.mean()
+    return x >= mid
+
+
 def cut_one(c):
     for v in VIEWS:
         src = os.path.join(RAW, f'{c}_{v}.png')
         if os.path.exists(src):
-            im = cut(Image.open(src))
+            try:
+                im = cut(Image.open(src))
+            except OSError:   # cut off while being written: paint it again
+                os.remove(src)
+                continue
+            if im and v == 'side' and faces_left(im):   # every side view faces right
+                im = im.transpose(Image.FLIP_LEFT_RIGHT)
             if im:
                 im.save(os.path.join(OUT, f'{c}_c{v}.png'))
 

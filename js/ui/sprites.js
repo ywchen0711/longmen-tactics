@@ -40,7 +40,9 @@ function aiFrame(id, view, breath = false) {
   const key = `ai|${id}|${view}|${breath}`;
   if (cache.has(key)) return cache.get(key);
   const chibi = aiChi && AI[id].c, [x, y] = chibi ? AI[id].c : AI[id].s, w = chibi ? CW : AW, h = chibi ? CH : AH, c = mk(w, h);
-  c.getContext('2d').drawImage(chibi ? aiChi : aiSpr, x + view * w, y, w, h, 0, breath ? 1 : 0, w, breath ? h - 1 : h);
+  const g = c.getContext('2d');
+  if (chibi && view === 1) { g.translate(w, 0); g.scale(-1, 1); }   // painted side views face right; the map wants left
+  g.drawImage(chibi ? aiChi : aiSpr, x + view * w, y, w, h, 0, breath ? 1 : 0, w, breath ? h - 1 : h);
   const mon = ART[id] && ART[id].k === 'm';
   c.res = chibi ? (mon ? CHI_MON_RES : CHI_RES) : mon ? AI_MON_RES : AI_RES;
   c.smooth = !!chibi;
