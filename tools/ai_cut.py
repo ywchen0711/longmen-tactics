@@ -91,15 +91,32 @@ def figures(mask):
     return found, label
 
 
-def fit(rgba):
-    """Scale to the sprite height, reduce the palette, add a dark outline, stand it on the bottom row."""
-    im = Image.fromarray(rgba, 'RGBA')
+def despeckle(a):
+    """A lone pixel whose four neighbours (three at least of one colour) all differ from it takes their colour:
+    painted noise that reads as dirt at sprite size."""
+    out = a.copy()
+    sol = a[:, :, 3] > 0
+    h, w = sol.shape
+    for y in range(1, h - 1):
+        for x in range(1, w - 1):
+            nb = [(y - 1, x), (y + 1, x), (y, x - 1), (y, x + 1)]
+            if not sol[y, x] or not all(sol[p] for p in nb):
+                continue
+            cols = [tuple(a[p][:3]) for p in nb]
+            if tuple(a[y, x, :3]) not in cols:
+                best = max(set(cols), key=cols.count)
+                if cols.count(best) >= 3:
+                    out[y, x, :3] = best
+    return out
+
+
+def fit(im):
+    """Reduce the palette to 16 colours, clear lone noisy pixels, add a dark outline, stand it on the bottom row."""
     im = im.crop(im.getchannel('A').getbbox())
-    s = min((SH - 4) / im.height, (SW - 2) / im.width)
-    im = im.resize((max(1, round(im.width * s)), max(1, round(im.height * s))), Image.NEAREST)
     alpha = im.getchannel('A')
-    rgb = im.convert('RGB').quantize(colors=28, method=Image.MEDIANCUT, dither=Image.NONE).convert('RGBA')
+    rgb = im.convert('RGB').quantize(colors=16, method=Image.MEDIANCUT, dither=Image.NONE).convert('RGBA')
     rgb.putalpha(alpha)
+    rgb = Image.fromarray(despeckle(despeckle(np.asarray(rgb))), 'RGBA')
     out = Image.new('RGBA', (SW, SH), (0, 0, 0, 0))
     out.alpha_composite(rgb, ((SW - rgb.width) // 2, SH - 1 - rgb.height))
     o = np.asarray(out).copy()
@@ -107,6 +124,23 @@ def fit(rgba):
     ring = ~solid & (np.roll(solid, 1, 0) | np.roll(solid, -1, 0) | np.roll(solid, 1, 1) | np.roll(solid, -1, 1))
     o[ring] = [34, 24, 36, 255]
     return Image.fromarray(o, 'RGBA')
+
+
+def half(rgb, mask):
+    """Halve a figure on its own pixel grid: each new pixel takes the colour most of its four share, and on a tie
+    the darkest, so outlines and eyes survive. Blending or resizing by fractions turns pixel art to mush."""
+    h, w = mask.shape[0] // 2, mask.shape[1] // 2
+    out = np.zeros((h, w, 4), np.uint8)
+    for y in range(h):
+        for x in range(w):
+            m = mask[2 * y:2 * y + 2, 2 * x:2 * x + 2].reshape(-1)
+            if m.sum() < 2:
+                continue
+            c = rgb[2 * y:2 * y + 2, 2 * x:2 * x + 2].reshape(-1, 3)[m].astype(int)
+            keys = [tuple(v // 16) for v in c]
+            i = max(range(len(c)), key=lambda i: (keys.count(keys[i]), -c[i].sum()))
+            out[y, x, :3], out[y, x, 3] = c[i], 255
+    return out
 
 
 def strip_lines(mask):
@@ -138,11 +172,23 @@ def sheet(img):
     narrow = [f for f in row if f[1][2] - f[1][0] <= mid * 1.6]
     if len(narrow) >= 2:
         row = narrow
-    row.sort(key=lambda f: f[1][0])
+    row = sorted(row, key=lambda f: f[1][0])[:3]
+    # The painting's own pixel grid (8 screen pixels to a block) is kept: a figure too big for the sprite is
+    # halved, one painted very small is doubled, all views alike.
+    tall, wide = max(f[0] for f in row), max(f[1][2] - f[1][0] for f in row)
+    shrink = tall > SH - 16 or wide > SW - 2
+    grow = not shrink and tall < 30 and wide < SW // 2
+    rgb = rgb.astype(np.uint8)
     views = []
-    for _, (x0, y0, x1, y1), n in row[:3]:
-        a = np.dstack([rgb.astype(np.uint8), np.where(label == n, 255, 0).astype(np.uint8)])
-        views.append(fit(a[y0:y1, x0:x1]))
+    for _, (x0, y0, x1, y1), n in row:
+        m = label[y0:y1, x0:x1] == n
+        if shrink:
+            a = half(rgb[y0:y1, x0:x1], m)
+        else:
+            a = np.dstack([rgb[y0:y1, x0:x1], np.where(m, 255, 0).astype(np.uint8)])
+            if grow:
+                a = a.repeat(2, 0).repeat(2, 1)
+        views.append(fit(Image.fromarray(a, 'RGBA')))
     if len(views) == 2:  # front and back
         views.insert(1, views[0])
     while len(views) < 3:

@@ -2,7 +2,7 @@
 // coloured overlays for moving and aiming, and the little effects (numbers, flashes, spell rings).
 import { TERRAIN, ELEMENTS, STATUS, statusTags } from '../data/core.js';
 import { groundTex, sprite as deco, tileHash } from './deco.js';
-import { person, monster, SPR_SCALE } from './sprites.js';
+import { person, monster, SPR_SCALE, aiScale } from './sprites.js';
 import { MONSTERS } from '../data/monsters.js';
 
 export const TW = 64, TH = 32, HS = 12;      // tile width, tile height, pixels per height step
@@ -172,7 +172,7 @@ export class IsoView {
     const { back, flip } = this.facing(an.dir ?? u.dir);
     const pose = u.dead ? 'dead' : an.pose || (Math.floor(this.time * 2 + u.id) % 2 ? 'idle1' : 'idle0');
     const mon = u.u.mon, img = mon ? monster(mon, back, pose) : person(u.u, back, pose);
-    const big = mon ? (MONSTERS[mon].size || 1) : 1, k = this.px((mon ? 2.6 : SPR_SCALE) * big), r = img.res || 1, sw = img.width * k / r, sh = img.height * k / r;
+    const big = mon ? (MONSTERS[mon].size || 1) : 1, k = this.px((mon ? 2.6 : SPR_SCALE) * big), ks = aiScale(img, k), sw = img.width * ks, sh = img.height * ks;
     cx = Math.round(cx); cy = Math.round(cy);
     const team = TEAM[u.st && u.st.charm ? (u.side === 'foe' ? 'ally' : 'foe') : u.side] || TEAM.ally;
     g.save(); g.imageSmoothingEnabled = false;
@@ -184,9 +184,8 @@ export class IsoView {
     }
     if (u.charging) { const s = (Math.sin(this.time * 6) + 1) / 2; g.strokeStyle = `rgba(190,170,255,${0.4 + s * 0.5})`; g.lineWidth = 2; g.beginPath(); g.ellipse(cx, cy, 23 * z, 10 * z, 0, 0, Math.PI * 2); g.stroke(); }
     g.translate(cx, cy + Math.round(4 * z)); if (flip) g.scale(-1, 1);
-    if (r > 1) { g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high'; }  // painted sprites are drawn smaller than they are
     // the sprite with a thin outline in the team's colour, so friend and foe never blur together
-    const pad = k / r, base = an.flash ? silhouette(img, '#ffffff') : u.st && u.st.stop ? silhouette(img, 'rgba(150,160,190,.75)') : img;
+    const pad = ks, base = an.flash ? silhouette(img, '#ffffff') : u.st && u.st.stop ? silhouette(img, 'rgba(150,160,190,.75)') : img;
     if (u.bound) g.globalAlpha = 0.85;
     g.drawImage(u.dead ? base : outlined(base, u.bound ? '#c8a050' : team.edge), -sw / 2 - (u.dead ? 0 : pad), -sh - (u.dead ? 0 : pad), sw + (u.dead ? 0 : pad * 2), sh + (u.dead ? 0 : pad * 2));
     g.restore();

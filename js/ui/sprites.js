@@ -19,9 +19,10 @@ export const artReady = new Promise((resolve) => {
   img.src = 'assets/art.png?v=4';
 });
 // The AI-painted art (tools/ai_pack.py) takes over wherever it exists: 64 x 88 sprites in front, side and back
-// views, and 128 x 128 busts. Drawn canvases carry `res`, how many of their pixels make one of the 16 x 24 grid.
+// views, and 128 x 128 busts. Drawn canvases carry `res`, how many of their pixels make one of the 16 x 24 grid;
+// they are drawn at whole or half multiples of their own pixels (aiScale), never smoothed, so they stay sharp.
 let aiSpr = null, aiPor = null;
-const AI_RES = 2.9, AI_MON_RES = 3.3, AW = 64, AH = 88, AP = 128;
+const AI_RES = 2, AI_MON_RES = 3, AW = 64, AH = 88, AP = 128;
 const load = (src, set) => new Promise((resolve) => {
   if (typeof Image === 'undefined') return resolve();
   const img = new Image();
@@ -29,6 +30,8 @@ const load = (src, set) => new Promise((resolve) => {
   img.onerror = () => resolve();
   img.src = src;
 });
+// screen pixels per sprite pixel, for a sprite drawn at `scale` screen pixels per 16 x 24 grid pixel
+export const aiScale = (img, scale) => (img.res ? Math.max(1, Math.round(scale / img.res * 2) / 2) : scale);
 export const aiReady = Promise.all([load('assets/ai/sprites.png?v=1', (i) => { aiSpr = i; }), load('assets/ai/portraits.webp?v=1', (i) => { aiPor = i; })]);
 // view 0 front, 1 side, 2 back; breath draws it a pixel shorter, for the second idle frame
 function aiFrame(id, view, breath = false) {
