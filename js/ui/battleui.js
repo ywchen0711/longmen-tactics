@@ -3,7 +3,7 @@
 import { T, EN } from '../i18n.js';
 import { el, clear, $ui, menu, pushKeys, bar, wait } from './dom.js';
 import { IsoView, elColour } from './iso.js';
-import { portrait } from './sprites.js';
+import { faceCanvas } from './sprites.js';
 import { JOBS, ABILITIES, describe } from '../data/jobs.js';
 import { ELEMENTS, SLOTS } from '../data/core.js';
 import { ITEMS, CONSUMABLES } from '../data/items.js';
@@ -378,7 +378,7 @@ export async function runBattle(spec) {
     });
   }
   function fillCard(box, u) {
-    const c = portrait(u.u, 52), cnv = el('canvas', { width: 52, height: 52 }); cnv.getContext('2d').drawImage(c, 0, 0);
+    const cnv = faceCanvas(u.u, 72); cnv.style.width = cnv.style.height = '';
     const job = u.u.mon ? T(MONSTERS[u.u.mon].name) : T(JOBS[u.u.job].name);
     const sts = Object.keys(u.st).filter((k) => u.st[k] < 90 || ['protect', 'shell', 'regen', 'haste', 'float', 'reflect'].includes(k));
     clear(box).append(
@@ -393,7 +393,7 @@ export async function runBattle(spec) {
     const sideTag = u.side === 'foe' ? [T('敵軍', 'Enemy'), '#ff7a6a'] : u.side === 'guest' ? [T('友軍', 'Guest'), '#6ad07a'] : [T('我軍', 'Ally'), '#6aa8ff'];
     const sec = (title, ...body) => el('div', { style: { marginTop: '12px' } }, el('div', { class: 'title small', style: { borderBottom: '1px solid var(--line)', paddingBottom: '2px', marginBottom: '4px' } }, title), ...body);
     const elems = (set) => [...(set || [])].map((e) => el('span', { class: 'tag', style: { color: (ELEMENTS[e] || [])[2], borderColor: (ELEMENTS[e] || [])[2] } }, ELEMENTS[e] ? T(...ELEMENTS[e].slice(0, 2)) : e));
-    const pc = portrait(u.u, 64), cnv = el('canvas', { width: 64, height: 64, style: { width: '64px', height: '64px', imageRendering: 'pixelated', border: '1px solid var(--line)', borderRadius: '4px' } }); cnv.getContext('2d').drawImage(pc, 0, 0);
+    const cnv = faceCanvas(u.u, 112, 112, { border: '1px solid var(--line)', borderRadius: '6px' });
     const job = mon ? T(mon.name) : T(JOBS[u.u.job].name);
     // facing as an arrow on screen, so it stays true however the camera is turned
     const faceArrow = () => { const g = GRID[u.dir]; if (!g) return '—'; const [x0, y0] = view.project(u.x + .5, u.y + .5, 0), [x1, y1] = view.project(u.x + .5 + g[0], u.y + .5 + g[1], 0); return '→↘↓↙←↖↑↗'[((Math.round(Math.atan2(y1 - y0, x1 - x0) / (Math.PI / 4)) % 8) + 8) % 8]; };

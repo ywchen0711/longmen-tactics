@@ -137,4 +137,11 @@ export function portrait(u, size = 64, h = size) {
   }
   return c;
 }
+// a portrait canvas shown at w x h on the page, drawn at twice that so the painting stays sharp on fine screens
+export function faceCanvas(u, w, h = w, style = {}) {
+  const c = document.createElement('canvas'); c.width = w * 2; c.height = h * 2;
+  Object.assign(c.style, { width: w + 'px', height: h + 'px' }, style);
+  c.getContext('2d').drawImage(portrait(u, w * 2, h * 2), 0, 0);
+  return c;
+}
 export const portraitOf = (id, size = 64, h = size) => portrait({ art: id }, size, h);

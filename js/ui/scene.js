@@ -1,7 +1,7 @@
 // Story scenes: chapter cards, conversations with portraits, and the ending.
 import { T } from '../i18n.js';
 import { el, clear, $ui, pushKeys, wait } from './dom.js';
-import { portrait } from './sprites.js';
+import { faceCanvas } from './sprites.js';
 import { CAST } from '../data/story.js';
 import { S } from '../state.js';
 import { music } from '../audio.js';
@@ -21,7 +21,7 @@ export function playLines(lines, { bg } = {}) {
       const [sp, zh, en] = lines[i]; full = fill(T(zh, en));
       clear(box);
       const pu = sp && typeof sp === 'string' ? castUnit(sp) : null;
-      if (pu) { const c = el('canvas', { width: 96, height: 112, class: 'por' }); c.getContext('2d').drawImage(portrait(pu, 96, 112), 0, 0); box.append(c); }
+      if (pu) { const c = faceCanvas(pu, 120, 140); c.className = 'por'; c.style.width = c.style.height = ''; box.append(c); }
       const txt = el('div', { class: 'text' + (sp ? '' : ' narration') });
       box.append(el('div', { style: { flex: 1, minWidth: 0 } }, sp ? el('div', { class: 'speaker' }, speakerName(sp)) : null, txt), el('span', { class: 'next' }, '▼'));
       let k = 0; clearInterval(typing);

@@ -39,7 +39,7 @@ button { font: inherit; color: inherit; }
 .unitcard { position: absolute; left: 12px; bottom: 12px; width: 300px; }
 .unitcard.right { left: auto; right: 12px; }
 .unitcard .head { display: flex; gap: 10px; align-items: center; }
-.unitcard canvas { width: 52px; height: 52px; image-rendering: pixelated; border: 1px solid var(--line); border-radius: 4px; }
+.unitcard canvas { width: 72px; height: 72px; border: 1px solid var(--line); border-radius: 4px; }
 .unitcard .nm { font-family: var(--pix); font-size: 17px; color: var(--gold2); line-height: 1.2; }
 .statgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 8px; font-size: 12.5px; margin-top: 6px; font-variant-numeric: tabular-nums; }
 .statgrid b { color: var(--dim); font-weight: 400; margin-right: 4px; }
@@ -56,7 +56,7 @@ button { font: inherit; color: inherit; }
 
 /* dialogue */
 .dialog { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); width: min(860px, calc(100% - 24px)); display: flex; gap: 12px; cursor: pointer; min-height: 120px; }
-.dialog canvas { width: 96px; height: 96px; image-rendering: pixelated; border: 1px solid var(--line); border-radius: 4px; flex: none; }
+.dialog canvas { width: 120px; height: 140px; border: 1px solid var(--line); border-radius: 4px; flex: none; }
 .dialog .speaker { font-family: var(--pix); color: var(--gold); font-size: 17px; }
 .dialog .text { font-size: 17px; line-height: 1.65; }
 .dialog .next { position: absolute; right: 14px; bottom: 8px; color: var(--gold); animation: blink 1s steps(2) infinite; }
@@ -80,7 +80,7 @@ button { font: inherit; color: inherit; }
 .item:hover { background: rgba(232, 196, 106, 0.1); }
 .item.sel { border-color: var(--gold); background: rgba(232, 196, 106, 0.14); }
 .item.off { opacity: 0.45; }
-.item canvas { width: 36px; height: 36px; image-rendering: pixelated; flex: none; }
+.item canvas { width: 52px; height: 52px; flex: none; border-radius: 4px; }
 .item .grow { flex: 1; min-width: 0; }
 .item .nm { font-family: var(--pix); }
 .tabs { display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap; }
@@ -104,7 +104,7 @@ button { font: inherit; color: inherit; }
 .nodeinfo { position: absolute; right: 12px; bottom: 12px; width: min(340px, calc(100% - 24px)); }
 @media (max-width: 760px) {
   .unitcard { width: calc(50% - 18px); font-size: 12px; }
-  .unitcard canvas { width: 40px; height: 40px; }
+  .unitcard canvas { width: 56px; height: 56px; }
   .cmd { left: 12px; bottom: auto; top: 54px; }
   .preview { width: calc(50% - 18px); }
   .turnlist { width: 120px; top: 54px; }

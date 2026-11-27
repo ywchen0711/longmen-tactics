@@ -1,7 +1,7 @@
 // Your company: stats, equipment, jobs and abilities for each member, and choosing who fights.
 import { T, EN } from '../i18n.js';
 import { el, clear, $ui, modal, toast, pushKeys, bar, sheet } from './dom.js';
-import { portrait } from './sprites.js';
+import { faceCanvas } from './sprites.js';
 import { JOBS, JOB_LIST, ABILITIES, describe, jobLevel, JOB_LV, KIND_NAME } from '../data/jobs.js';
 import { ITEMS, CONSUMABLES } from '../data/items.js';
 import { STATS, SLOTS, ELEMENTS, STATUS, WEAPONS, ARMOURS } from '../data/core.js';
@@ -12,7 +12,7 @@ import { sfx } from '../audio.js';
 import { bioOf } from './journal.js';
 
 export const uname = (u) => (typeof u.name === 'string' ? u.name : T(u.name));
-const pcanvas = (u, n = 36) => { const c = el('canvas', { width: n, height: n }); c.getContext('2d').drawImage(portrait(u, n), 0, 0); return c; };
+const pcanvas = (u, n = 52) => { const c = faceCanvas(u, n); if (n === 52) c.style.width = c.style.height = ''; return c; };
 export const itemLabel = (id) => (ITEMS[id] ? T(ITEMS[id].name) : CONSUMABLES[id] ? T(CONSUMABLES[id].name) : id);
 // a short line about a piece of gear
 export function gearLine(it) {
@@ -59,7 +59,7 @@ export function partyScreen(onBack, start = 0) {
       el('div', { class: 'list' }, S.roster.map((u, i) => el('div', { class: 'item' + (i === sel ? ' sel' : ''), onclick: () => { sel = i; draw(); } }, pcanvas(u), el('div', { class: 'grow' }, el('div', { class: 'nm' }, uname(u)), el('div', { class: 'small dim' }, `${u.mon ? '' : T(JOBS[u.job].name)} Lv ${u.lv}`))))));
     const u = S.roster[sel];
     const tabs = el('div', { class: 'tabs' }, [['status', T('狀態', 'Status')], ['equip', T('裝備', 'Equipment')], ['job', T('職業', 'Job')], ['skill', T('技能', 'Abilities')]].map(([k, l]) => el('button', { class: tab === k ? 'on' : '', onclick: () => { tab = k; draw(); } }, l)));
-    clear(right).append(el('div', { class: 'row', style: { marginBottom: '8px' } }, pcanvas(u, 56), el('div', {}, el('div', { class: 'title', style: { fontSize: '20px' } }, uname(u)), el('div', { class: 'small dim' }, `${u.mon ? '' : T(JOBS[u.job].name) + ' · '}Lv ${u.lv} · EXP ${u.exp}/100${u.mon ? '' : ` · ${T('職業等級', 'Job Lv')} ${jobLv(u)} · JP ${jpOf(u, u.job).cur}`}`))), u.mon ? null : tabs);
+    clear(right).append(el('div', { class: 'row', style: { marginBottom: '8px' } }, pcanvas(u, 96), el('div', {}, el('div', { class: 'title', style: { fontSize: '20px' } }, uname(u)), el('div', { class: 'small dim' }, `${u.mon ? '' : T(JOBS[u.job].name) + ' · '}Lv ${u.lv} · EXP ${u.exp}/100${u.mon ? '' : ` · ${T('職業等級', 'Job Lv')} ${jobLv(u)} · JP ${jpOf(u, u.job).cur}`}`))), u.mon ? null : tabs);
     if (tab === 'status' || u.mon) right.append(statusTab(u)); else if (tab === 'equip') right.append(equipTab(u, draw)); else if (tab === 'job') right.append(jobTab(u, draw)); else right.append(skillTab(u, draw));
     if (!u.who && S.roster.length > 1) right.append(el('div', { style: { marginTop: '16px' } }, el('button', { class: 'btn', onclick: async () => { if (await modal(el('div', {}, T(`要讓 ${uname(u)} 離開隊伍嗎？裝備會放回背包。`, `Let ${uname(u)} leave? Their gear returns to the bag.`)), [T('離開', 'Dismiss'), T('取消', 'Cancel')]) === 0) { for (const id of Object.values(u.eq)) if (id) bagAdd(id); S.roster.splice(sel, 1); sel = 0; draw(); } } }, T('解雇', 'Dismiss'))));
   }

@@ -1,14 +1,14 @@
 // The journal: the story so far, every conversation to read again, and the people you've met.
 import { T } from '../i18n.js';
 import { el, clear, pushKeys } from './dom.js';
-import { portrait } from './sprites.js';
+import { faceCanvas } from './sprites.js';
 import { fill, castUnit, speakerName } from './scene.js';
 import { EVENTS, CHAPTERS, CAST, nextEvent } from '../data/story.js';
 import { NODES } from '../data/world.js';
 import { SYNOPSIS, BIOS } from '../data/journal.js';
 import { S } from '../state.js';
 
-const face = (who, n = 40) => { const u = castUnit(who); if (!u) return null; const c = el('canvas', { width: n, height: n, style: { width: n + 'px', height: n + 'px', imageRendering: 'pixelated', borderRadius: '4px', border: '1px solid #6a5a3a', flex: 'none' } }); c.getContext('2d').drawImage(portrait(u, n), 0, 0); return c; };
+const face = (who, n = 56) => { const u = castUnit(who); if (!u) return null; return faceCanvas(u, n, n, { borderRadius: '6px', border: '1px solid #6a5a3a', flex: 'none' }); };
 const done = () => EVENTS.filter((e) => S.done[e.id]);
 // the next thing to do, in a sentence
 export function objective() {
@@ -64,7 +64,7 @@ export function journal(onBack, start = 'story') {
       if (!ls || !ls.length) return;
       lines.append(el('div', { class: 'title small', style: { margin: '10px 0 6px' } }, title));
       for (const [sp, zh, en] of ls) lines.append(el('div', { class: 'row', style: { alignItems: 'flex-start', flexWrap: 'nowrap', margin: '6px 0' } },
-        sp && typeof sp === 'string' ? face(sp) : el('div', { style: { width: '40px', flex: 'none' } }),
+        sp && typeof sp === 'string' ? face(sp) : el('div', { style: { width: '56px', flex: 'none' } }),
         el('div', { style: { minWidth: 0 } }, sp ? el('div', { class: 'pix small', style: { color: '#e8c46a' } }, speakerName(sp)) : null, el('div', { class: sp ? '' : 'narration', style: { lineHeight: '1.7' } }, fill(T(zh, en))))));
     };
     lines.append(el('div', { class: 'title', style: { fontSize: '19px' } }, T(cur.name)), el('div', { class: 'small dim' }, `${T(CHAPTERS[cur.ch].title)} · ${T(NODES[cur.at].name)}`));
@@ -78,7 +78,7 @@ export function journal(onBack, start = 'story') {
       const b = BIOS[who], name = T(CAST[who].name);
       const inParty = S.roster.some((u) => u.who === who);
       const more = (b.more || []).filter(([id]) => S.done[id]).map(([, t]) => el('div', { class: 'small', style: { marginTop: '6px', lineHeight: '1.7', color: '#d8d0e8' } }, '▸ ' + fill(T(...t))));
-      grid.append(el('div', { class: 'panel', style: { display: 'flex', gap: '12px', alignItems: 'flex-start' } }, face(who, 64),
+      grid.append(el('div', { class: 'panel', style: { display: 'flex', gap: '12px', alignItems: 'flex-start' } }, face(who, 96),
         el('div', { style: { minWidth: 0 } }, el('div', { class: 'title' }, name), el('div', { class: 'small dim' }, T(...b.role) + (inParty ? T('・隊伍中', ' · in the company') : '')),
           el('div', { class: 'small', style: { marginTop: '6px', lineHeight: '1.7' } }, fill(T(...b.text))), more)));
     }
