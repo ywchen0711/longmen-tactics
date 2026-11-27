@@ -21,8 +21,8 @@ export const artReady = new Promise((resolve) => {
 // The AI-painted art (tools/ai_pack.py) takes over wherever it exists: 64 x 88 sprites in front, side and back
 // views, and 128 x 128 busts. Drawn canvases carry `res`, how many of their pixels make one of the 16 x 24 grid;
 // they are drawn at whole or half multiples of their own pixels (aiScale), never smoothed, so they stay sharp.
-let aiSpr = null, aiPor = null;
-const AI_RES = 2, AI_MON_RES = 3, AW = 64, AH = 88, AP = 128;
+let aiSpr = null, aiPor = null, aiChi = null;
+const AI_RES = 2, AI_MON_RES = 3, CHI_RES = 3.2, CHI_MON_RES = 4.5, AW = 64, AH = 88, AP = 128, CW = 80, CH = 90;
 const load = (src, set) => new Promise((resolve) => {
   if (typeof Image === 'undefined') return resolve();
   const img = new Image();
@@ -31,20 +31,24 @@ const load = (src, set) => new Promise((resolve) => {
   img.src = src;
 });
 // screen pixels per sprite pixel, for a sprite drawn at `scale` screen pixels per 16 x 24 grid pixel
-export const aiScale = (img, scale) => (img.res ? Math.max(1, Math.round(scale / img.res * 2) / 2) : scale);
-export const aiReady = Promise.all([load('assets/ai/sprites.png?v=1', (i) => { aiSpr = i; }), load('assets/ai/portraits.webp?v=1', (i) => { aiPor = i; })]);
+export const aiScale = (img, scale) => (!img.res ? scale : img.smooth ? scale / img.res : Math.max(1, Math.round(scale / img.res * 2) / 2));
+export const aiReady = Promise.all([load('assets/ai/sprites.png?v=2', (i) => { aiSpr = i; }), load('assets/ai/portraits.webp?v=2', (i) => { aiPor = i; }),
+  load('assets/ai/chibi.png?v=1', (i) => { aiChi = i; })]);
 // view 0 front, 1 side, 2 back; breath draws it a pixel shorter, for the second idle frame
+// the detailed (chibi) sprites are small paintings, not pixel art: they are drawn smoothed, at any scale
 function aiFrame(id, view, breath = false) {
   const key = `ai|${id}|${view}|${breath}`;
   if (cache.has(key)) return cache.get(key);
-  const [x, y] = AI[id].s, c = mk(AW, AH);
-  c.getContext('2d').drawImage(aiSpr, x + view * AW, y, AW, AH, 0, breath ? 1 : 0, AW, breath ? AH - 1 : AH);
-  c.res = ART[id] && ART[id].k === 'm' ? AI_MON_RES : AI_RES;
+  const chibi = aiChi && AI[id].c, [x, y] = chibi ? AI[id].c : AI[id].s, w = chibi ? CW : AW, h = chibi ? CH : AH, c = mk(w, h);
+  c.getContext('2d').drawImage(chibi ? aiChi : aiSpr, x + view * w, y, w, h, 0, breath ? 1 : 0, w, breath ? h - 1 : h);
+  const mon = ART[id] && ART[id].k === 'm';
+  c.res = chibi ? (mon ? CHI_MON_RES : CHI_RES) : mon ? AI_MON_RES : AI_RES;
+  c.smooth = !!chibi;
   cache.set(key, c);
   return c;
 }
 function aiPose(id, back, pose) {
-  const front = aiFrame(id, 0), res = front.res, mark = (c) => { c.res = res; return c; };
+  const front = aiFrame(id, 0), res = front.res, mark = (c) => { c.res = res; c.smooth = front.smooth; return c; };
   if (pose === 'dead') return mark(fallen(id, front));
   if (pose === 'hurt') return mark(tinted(back ? aiFrame(id, 2) : front, 'rgba(255,70,70,.45)', `hurt|${id}|${back}`));
   if (pose === 'act') return aiFrame(id, 1);
@@ -92,7 +96,7 @@ function fallen(id, src) {
 }
 // pose: 'idle0' 'idle1' 'walk0' 'walk1' 'act' 'hurt' 'dead'; back: seen from behind. The picture faces left (the map mirrors it).
 function drawPose(id, back, pose = 'idle0') {
-  if (aiSpr && AI[id] && AI[id].s) return aiPose(id, back, pose);
+  if (AI[id] && ((aiSpr && AI[id].s) || (aiChi && AI[id].c))) return aiPose(id, back, pose);
   const a = ART[id] || ART.sx_disciple, R = a.rows;
   if (!ART[id]) id = 'sx_disciple';
   if (a.k === 'm') {

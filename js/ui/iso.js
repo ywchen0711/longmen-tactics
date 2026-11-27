@@ -184,6 +184,7 @@ export class IsoView {
     }
     if (u.charging) { const s = (Math.sin(this.time * 6) + 1) / 2; g.strokeStyle = `rgba(190,170,255,${0.4 + s * 0.5})`; g.lineWidth = 2; g.beginPath(); g.ellipse(cx, cy, 23 * z, 10 * z, 0, 0, Math.PI * 2); g.stroke(); }
     g.translate(cx, cy + Math.round(4 * z)); if (flip) g.scale(-1, 1);
+    if (img.smooth) { g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high'; }  // the detailed sprites are paintings
     // the sprite with a thin outline in the team's colour, so friend and foe never blur together
     const pad = ks, base = an.flash ? silhouette(img, '#ffffff') : u.st && u.st.stop ? silhouette(img, 'rgba(150,160,190,.75)') : img;
     if (u.bound) g.globalAlpha = 0.85;

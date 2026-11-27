@@ -154,7 +154,7 @@ function world() {
     const pose = moving ? (Math.floor(t * 8) % 2 ? 'walk0' : 'walk1') : (Math.floor(t * 2) % 2 ? 'idle0' : 'idle1');
     const img = person(hero, back, pose), sc = s >= 0.8 ? 3 : 2, ks = aiScale(img, sc), w = img.width * ks, h = img.height * ks, hop = moving ? Math.abs(Math.sin(t * 16)) * 3 : 0;
     g.fillStyle = 'rgba(0,0,0,.35)'; g.beginPath(); g.ellipse(px, py + 1, 12, 4, 0, 0, Math.PI * 2); g.fill();
-    g.save(); g.imageSmoothingEnabled = false; g.translate(Math.round(px), Math.round(py - hop)); if (flip) g.scale(-1, 1); g.drawImage(img, -w / 2, -h + sc * 2, w, h); g.restore();
+    g.save(); g.imageSmoothingEnabled = !!img.smooth; g.translate(Math.round(px), Math.round(py - hop)); if (flip) g.scale(-1, 1); g.drawImage(img, -w / 2, -h + sc * 2, w, h); g.restore();
     const fx = px + (flip ? -16 : 16), fy = py - hop;
     g.fillStyle = '#5a3a1a'; g.fillRect(fx - 1, fy - 52, 3, 46); g.fillStyle = '#2a6aa0'; g.beginPath(); g.moveTo(fx + 2, fy - 52); g.lineTo(fx + 24, fy - 46 + Math.sin(t * (moving ? 9 : 3)) * 3); g.lineTo(fx + 2, fy - 38); g.fill(); g.strokeStyle = '#d8e8ff'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(fx + 5, fy - 49); g.lineTo(fx + 16, fy - 43); g.stroke();
     // the names, over the company's banner: kept inside the map (a long English name at the edge was cut off) and, on a small map, moved above the

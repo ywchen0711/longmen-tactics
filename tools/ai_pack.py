@@ -3,7 +3,8 @@
     C:/sdenv/Scripts/python tools/ai_pack.py
         assets/ai/portraits.webp   128 x 128 busts, 13 to a row
         assets/ai/sprites.png      64 x 88 sprites, one character per row of front, side, back
-        js/ai_art.js               { id: { p: [x, y], s: [x, y] } }  (p or s missing when there is none)
+        assets/ai/chibi.png        the detailed sprites (tools/ai_chibi.py), 80 x 90 cells of front, side, back
+        js/ai_art.js               { id: { p: [x, y], s: [x, y], c: [x, y] } }  (any missing when there is none)
 
 Sprites listed in tools/ai_bad.txt (a cut that failed, waiting for a redraw) are left out; those characters keep
 their Character Gallery sprites.
@@ -14,7 +15,7 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CUT = os.path.join(ROOT, 'art', 'cut')
 OUT = os.path.join(ROOT, 'assets', 'ai')
-P, SW, SH, PCOLS, SCOLS = 128, 64, 88, 13, 6
+P, SW, SH, PCOLS, SCOLS, CW, CH = 128, 64, 88, 13, 6, 80, 90
 
 
 def main():
@@ -37,10 +38,20 @@ def main():
             atlas.alpha_composite(Image.open(os.path.join(CUT, f'{k}_{v}.png')).convert('RGBA'), (x + j * SW, y))
         idx.setdefault(k, {})['s'] = [x, y]
     atlas.save(os.path.join(OUT, 'sprites.png'), optimize=True)
+    chi = sorted(k for k in {f[:-len('_cfront.png')] for f in files if f.endswith('_cfront.png')}
+                 if all(os.path.exists(os.path.join(CUT, f'{k}_c{v}.png')) for v in ('side', 'back')))
+    sheet = Image.new('RGBA', (CW * 3 * SCOLS, CH * max(1, (len(chi) + SCOLS - 1) // SCOLS)))
+    for i, k in enumerate(chi):
+        x, y = (i % SCOLS) * CW * 3, (i // SCOLS) * CH
+        for j, v in enumerate(('front', 'side', 'back')):
+            im = Image.open(os.path.join(CUT, f'{k}_c{v}.png')).convert('RGBA')
+            sheet.alpha_composite(im, (x + j * CW + (CW - im.width) // 2, y + CH - 1 - im.height))
+        idx.setdefault(k, {})['c'] = [x, y]
+    sheet.save(os.path.join(OUT, 'chibi.png'), optimize=True)
     with open(os.path.join(ROOT, 'js', 'ai_art.js'), 'w', encoding='utf-8') as f:
         f.write('// Made by tools/ai_pack.py from the AI-painted art: rects into assets/ai/. Do not edit by hand.\n')
         f.write(f'export const AI = {json.dumps(idx, separators=(",", ":"))};\n')
-    print(len(por), 'portraits,', len(spr), 'sprites')
+    print(len(por), 'portraits,', len(spr), 'sprites,', len(chi), 'detailed sprites')
 
 
 if __name__ == '__main__':
