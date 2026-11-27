@@ -2,6 +2,7 @@
 // 16 x 24 field sprites for people, 16 x 16 (or 16 x 24) ones for beasts, and the 48 x 56 portraits.
 // Each pose is cut once onto a small canvas and cached; the map scales it up with crisp pixels.
 import { ART } from '../art.js';
+import { AI } from '../ai_art.js';
 import { JOBS } from '../data/jobs.js';
 import { MONSTERS } from '../data/monsters.js';
 import { CAST } from '../data/story.js';
@@ -17,6 +18,36 @@ export const artReady = new Promise((resolve) => {
   img.onerror = () => resolve();
   img.src = 'assets/art.png?v=4';
 });
+// The AI-painted art (tools/ai_pack.py) takes over wherever it exists: 64 x 88 sprites in front, side and back
+// views, and 128 x 128 busts. Drawn canvases carry `res`, how many of their pixels make one of the 16 x 24 grid.
+let aiSpr = null, aiPor = null;
+const AI_RES = 2.9, AI_MON_RES = 3.3, AW = 64, AH = 88, AP = 128;
+const load = (src, set) => new Promise((resolve) => {
+  if (typeof Image === 'undefined') return resolve();
+  const img = new Image();
+  img.onload = () => { set(img); cache.clear(); resolve(); };
+  img.onerror = () => resolve();
+  img.src = src;
+});
+export const aiReady = Promise.all([load('assets/ai/sprites.png?v=1', (i) => { aiSpr = i; }), load('assets/ai/portraits.webp?v=1', (i) => { aiPor = i; })]);
+// view 0 front, 1 side, 2 back; breath draws it a pixel shorter, for the second idle frame
+function aiFrame(id, view, breath = false) {
+  const key = `ai|${id}|${view}|${breath}`;
+  if (cache.has(key)) return cache.get(key);
+  const [x, y] = AI[id].s, c = mk(AW, AH);
+  c.getContext('2d').drawImage(aiSpr, x + view * AW, y, AW, AH, 0, breath ? 1 : 0, AW, breath ? AH - 1 : AH);
+  c.res = ART[id] && ART[id].k === 'm' ? AI_MON_RES : AI_RES;
+  cache.set(key, c);
+  return c;
+}
+function aiPose(id, back, pose) {
+  const front = aiFrame(id, 0), res = front.res, mark = (c) => { c.res = res; return c; };
+  if (pose === 'dead') return mark(fallen(id, front));
+  if (pose === 'hurt') return mark(tinted(back ? aiFrame(id, 2) : front, 'rgba(255,70,70,.45)', `hurt|${id}|${back}`));
+  if (pose === 'act') return aiFrame(id, 1);
+  if (pose === 'walk0' || pose === 'walk1') return back ? aiFrame(id, 2, pose === 'walk1') : aiFrame(id, 1, pose === 'walk1');
+  return aiFrame(id, back ? 2 : 0, pose === 'idle1');
+}
 // which gallery character draws this unit
 export function artOf(u) {
   if (!u) return 'sx_disciple';
@@ -58,6 +89,7 @@ function fallen(id, src) {
 }
 // pose: 'idle0' 'idle1' 'walk0' 'walk1' 'act' 'hurt' 'dead'; back: seen from behind. The picture faces left (the map mirrors it).
 function drawPose(id, back, pose = 'idle0') {
+  if (aiSpr && AI[id] && AI[id].s) return aiPose(id, back, pose);
   const a = ART[id] || ART.sx_disciple, R = a.rows;
   if (!ART[id]) id = 'sx_disciple';
   if (a.k === 'm') {
@@ -85,7 +117,13 @@ export function portrait(u, size = 64, h = size) {
   const c = mk(size, h), g = c.getContext('2d'); g.imageSmoothingEnabled = false;
   g.fillStyle = '#0a0a12'; g.fillRect(0, 0, size, h);
   const a = ART[id];
-  if (atlas && a) {
+  if (aiPor && AI[id] && AI[id].p) {
+    // the painted bust covers the frame, standing on its bottom edge
+    const [px, py] = AI[id].p, d = Math.max(size, h);
+    g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
+    g.drawImage(aiPor, px, py, AP, AP, Math.round((size - d) / 2), h - d, d, d);
+    cache.set(key, c);
+  } else if (atlas && a) {
     const [px, py, pw, ph] = a.p, k = Math.min(size / pw, h / ph), dw = Math.round(pw * k), dh = Math.round(ph * k);
     g.drawImage(atlas, px, py, pw, ph, Math.round((size - dw) / 2), h - dh, dw, dh);
     cache.set(key, c);

@@ -44,3 +44,10 @@ genre take on isometric tactics RPGs and uses none of their names, characters, m
   - **Taiko:** "taiko.wav" and "taiko2.wav" by Anuj_Shrestha1.
     https://freesound.org/people/Anuj_Shrestha1/sounds/486140/ and https://freesound.org/people/Anuj_Shrestha1/sounds/486141/
 - **Fonts:** Noto Sans TC and Noto Serif TC (Google Fonts), SIL Open Font License 1.1, loaded from Google Fonts.
+
+## AI-painted portraits and sprites
+
+The busts and map sprites in `assets/ai/` were painted on a local GPU with
+[Animagine XL 4.0](https://huggingface.co/cagliostrolab/animagine-xl-4.0) (CreativeML Open RAIL++-M) and, for the
+sprites, the [Pixel Art XL](https://huggingface.co/nerijs/pixel-art-xl) LoRA, from prompts written for each character
+(`tools/ai_tags.py`). Made with `tools/ai_art.py`, `tools/ai_cut.py` and `tools/ai_pack.py`.
